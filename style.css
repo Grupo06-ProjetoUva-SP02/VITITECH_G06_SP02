@@ -18,24 +18,59 @@ body {
     --cor-texto-secundaria: #f7e5ff; 
 }
 
+/* --------- HEADER --------- */
 .header {
     background-color: var(--cor-principal);
     display: flex;
     justify-content: space-between;
     padding: 10px;
     align-items: center;
-    border-bottom: solid 2px;
-    border-color: var(--cor-fundo);
+    border-bottom: 2px solid #d400ff;
+    box-shadow: 0 1px 10px #c702ee;
+    position: relative;
+    z-index: 100;
+}
+
+.logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    gap: 15px
+}
+
+.logo-container h1 {
+    font-size: 25px;
+    font-weight: 1000;
+    color: #ffffff;
+}
+
+.logo-container img {
+    width: 35px;
 }
 
 .nav {
-    width: 75%;
+    width: 35%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    gap: 15px
 }
 
 .nav ul {
     display: flex;
-    justify-content: space-around;
-    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
     list-style: none;
 }
 
@@ -49,6 +84,7 @@ body {
     color: #e683ff;
 }
 
+/* --------- BANNER --------- */
 .container {
     max-width: 1300px;
     padding: 0, 20px;
@@ -98,19 +134,36 @@ body {
 
 .button a {
     text-decoration: none;
-    color: #ffffff;
     background-color: var(--cor-principal);
     font-weight: 900;
     padding: 10px 35px;
     border-radius: 10px;
 }
 
+.button .btn_1 {
+    color: #ffffff;
+}
+
+.btn_1:hover {
+    background-color: #6c3077;
+    transition: 0.5s ease;
+}
+
 .button .btn_2 {
-    color: var(--cor-secundaria);
     background-color: #ffffff;
     margin-left: 15px;
 }
 
+.button .btn_2 {
+    color: var(--cor-principal);
+}
+
+.btn_2:hover {
+    background-color: #cfa3cf;
+    transition: 0.5s ease;
+}
+
+/* --------- SERVIÇOS --------- */
 .container-servicos {
     background-color: var(--cor-principal);
     display: flex;
@@ -138,9 +191,18 @@ body {
     margin: 10px;
     display: flex;
     flex-direction: column;
-    text-align: justify;
     padding: 40px;
     border-radius: 15px;
+}
+
+.img-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.servico img {
+    max-width: 100px;
 }
 
 .servico h3 {
@@ -154,13 +216,50 @@ body {
 .servico p {
     color: var(--cor-texto);
     line-height: 24px;
+    text-align: justify;
 }
 
+/* --------- OBJETIVOS --------- */
 .container-objetivos {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+    padding: 100px 0px;
 }
 
+.container-img {
+    flex: 0 0 400px; /* Largura fixa */
+    margin-left: calc(-60vw + 50%); /* encostar a img no limite esquerdo */
+}
+
+.container-objetivos img {
+    width: 100%;
+    height: auto;
+}
+
+.info-objetivo {
+    width: 50%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+    flex-direction: column;
+    line-height: 30px;
+    color: var(--cor-secundaria);
+}
+
+.info-objetivo h2 {
+    font-weight: 1000;
+    line-height: 150px;
+    color: var(--cor-principal);
+    font-size: 50px;
+}
+
+.info-objetivo p {
+    font-size: 20px;
+}
+/* --------- CALCULADORA --------- */
 .containerCalc {
     color: white;
 
@@ -211,9 +310,7 @@ body {
     border: none;
 }
 
-
-
-
+/* --------- CENÁRIOS --------- */
 .containerCen {
     display: flex;
     flex-direction: column;
@@ -225,8 +322,6 @@ body {
     font-size: 28px;
     text-transform: uppercase;
     color: #5A2E68;
-
-
 }
 
 .containerCenItensList {
