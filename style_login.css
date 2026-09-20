@@ -49,3 +49,12 @@ body {
     color: #e683ff;
 }
 
+.banner {
+    background-image: url('assets/img/banner_login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 600px;
+    position: relative;
+    filter: brightness(50%);
+}
