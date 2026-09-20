@@ -50,11 +50,80 @@ body {
 }
 
 .banner {
-    background-image: url('assets/img/banner_login.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/img/banner_login.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 600px;
+    height: 89.6vh;
     position: relative;
-    filter: brightness(50%);
+}
+
+.formulario_login {
+    display: flex;
+    width: 40vw;
+    height: 50vh;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    background-color: var(--cor-texto-secundaria);
+    opacity: 80%;
+    border-radius: 12px;
+}
+
+.title {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    flex-direction: column;
+    color: var(--cor-texto);
+    align-items: center;
+}
+
+.title span {
+    color: #8d4899;
+}
+
+.title p {
+    margin-top: 30px;
+    color: var(--cor-texto);
+}
+
+input {
+    width: 20vw;
+    height: 3vh;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+label {
+    color: var(--cor-secundaria);
+}
+
+button {
+    margin-top: 10px;
+    width: 10vw;
+    height: 5vh;
+    font-size: 15px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: #22001b;
+}
+
+.link_cadastro {
+    margin-top: 15px;
+    color: #381b3d;
+}
+
+.link_cadastro a {
+    color: var(--cor-secundaria);
+}
+
+.link_cadastro a:hover {
+    color: var(--cor-principal);
 }
