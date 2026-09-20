@@ -160,3 +160,93 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.containerCalc {
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 310px;
+
+    background: linear-gradient(to right, #944C9D 0%, #7A3E8F 100%);
+}
+
+.containerCalcLef {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.containerCalcLefTitle {
+    font-weight: 900;
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+.containerCalcLefDesc {
+    font-size: 19px;
+}
+
+.containerCalcLefButton {
+    background-color: white;
+    color: #5A2E68;
+
+    width: 250px;
+    height: 48px;
+
+    font-size: 20px;
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    border-radius: 50px;
+    border: none;
+}
+
+
+
+
+.containerCen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ContainerCenTitle {
+    font-weight: 900;
+    font-size: 28px;
+    text-transform: uppercase;
+    color: #5A2E68;
+
+
+}
+
+.containerCenItensList {
+    display: flex;
+}
+
+.containerCenItem {
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    border-radius: 20px;
+}
+
+.containerCenItemTitle {
+    color: #5A2E68;
+    font-weight: 900;
+}
+
+.containerCenItemDesc {
+    color: rgba(36, 36, 36, 1);
+
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+}
