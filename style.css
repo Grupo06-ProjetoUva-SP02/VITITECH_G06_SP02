@@ -310,38 +310,134 @@ body {
     border: none;
 }
 
-/* --------- CENÁRIOS --------- */
+
+/* --------- CALCULADORA --------- */
+
+
 .containerCen {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.ContainerCenTitle {
+.containerCenTitle {
     font-weight: 900;
     font-size: 28px;
     text-transform: uppercase;
     color: #5A2E68;
+
+    margin-top: 80px;
+}
+
+.containerCalcRigImg {
+    height: 100%;
 }
 
 .containerCenItensList {
+    margin-top: 60px;
+
     display: flex;
+    align-items: center;
+
+    flex-wrap: wrap;
+    
+    gap: 45px;
 }
 
 .containerCenItem {
     border: 1px solid rgba(0, 0, 0, 0.24);
     border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 450px;
+    height: 270px;
+
+    padding: 20px 40px 0px 40px;
+}
+
+.containerCenItemImg {
+    width: 83px;
+    height: auto;
+}
+
+.containerCenItemBottom {
+    margin-top: 20px;
+
+    height: 100%;
 }
 
 .containerCenItemTitle {
     color: #5A2E68;
+    text-align: center;
     font-weight: 900;
+
+    font-size: 20px;
 }
 
 .containerCenItemDesc {
+    margin-top: 10px;
     color: rgba(36, 36, 36, 1);
 
+    width: 390px;
+
     font-weight: 400;
-    font-size: 16px;
+    line-height: 17px;
+    font-size: 14px;
     text-align: center;
+}
+
+
+
+
+
+
+.containerFooterUva {
+    width: 80px;
+    height: 80px;
+
+    margin-left: 90px;
+}
+
+.containerFooter {
+    padding-top: 40px;
+    margin-top: 70px;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    background: linear-gradient(to right, #944C9D 0%, #7A3E8F 100%);
+}
+
+.containerFooterBottom {
+    color: white;
+
+    display: flex;
+    justify-content: space-around;
+
+    background: linear-gradient(to right, #944C9D 0%, #7A3E8F 100%);
+
+    padding: 60px 0px 60px 0px;
+}
+
+.containerFooterItem ul li{
+    font-weight: 200;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.containerFooterItemTitle {
+    font-weight: 900;
+
+    font-size: 20px;
+}
+
+.containerFooterItem {
+    display: flex;
+    flex-direction: column;
 }
