@@ -24,6 +24,39 @@
         </nav>
     </header>
 
-    
+    <div class="banner">
+        <div class="formulario_login">
+            <div class="title">
+                <h1>Hora do <span>Login</span></h1>
+                <p>Acesse seus benefícios que a <span><b>VITITECH</b></span> te proporciona!</p>
+            </div>
+            <label for="ipt_email">E-mail:</label>
+            <input type="text" id="ipt_email">
+            <label for="ipt_senha">Senha:</label>
+            <input type="password" id="ipt_senha">
+            <button onclick="verificar ()">Entrar</button>
+            <div class="link_cadastro">
+                Ainda não possui conta?
+                <a href="cadastro.html">Clique aqui</a>
+            </div>
+        </div>
+    </div>
+
+    </div>
 </body>
+    <script>
+
+        function verificar () {
+            let login = ipt_email.value;
+            let senha = ipt_senha.value;
+            let login_fixo = 'RaianneLopes@vititech.com';
+            let senha_fixa = 'Teste123';
+            
+
+            if (login != login_fixo || senha != senha_fixa) {
+                alert (`Seu E-mail ou Senha podem estar errados! Tente novamente.`)
+            }
+        }
+    </script>
 </html>
+

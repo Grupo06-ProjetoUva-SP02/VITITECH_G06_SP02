@@ -53,7 +53,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/img/banner_login.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/img/banner_cadastro.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -61,15 +61,15 @@ body {
     position: relative;
 }
 
-.formulario_login {
+.formulario_cadastro {
     display: flex;
-    width: 40vw;
-    height: 50vh;
+    width: 1200px;
+    height: 700px;
     align-items: center;
     flex-direction: column;
     position: absolute;
     background-color: var(--cor-texto-secundaria);
-    opacity: 80%;
+    opacity: 90%;
     border-radius: 12px;
 }
 
@@ -80,6 +80,7 @@ body {
     flex-direction: column;
     color: var(--cor-texto);
     align-items: center;
+    font-size: 50px;
 }
 
 .title span {
@@ -93,7 +94,7 @@ body {
 
 input {
     width: 20vw;
-    height: 3vh;
+    height: 30px;
     margin-top: 5px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -107,7 +108,7 @@ label {
 button {
     margin-top: 10px;
     width: 10vw;
-    height: 5vh;
+    height: 50px;
     font-size: 15px;
     border-radius: 5px;
     border: none;
