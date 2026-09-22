@@ -24,18 +24,52 @@ body {
     justify-content: space-between;
     padding: 10px;
     align-items: center;
-    border-bottom: solid 2px;
-    border-color: var(--cor-fundo);
+    border-bottom: 2px solid #d400ff;
+    box-shadow: 0 1px 10px #c702ee;
+    position: relative;
+    z-index: 100;
+}
+
+.logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    gap: 15px
+}
+
+.logo-container h1 {
+    font-size: 25px;
+    font-weight: 1000;
+    color: #ffffff;
+}
+
+.logo-container img {
+    width: 35px;
 }
 
 .nav {
-    width: 75%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    gap: 15px
 }
 
 .nav ul {
     display: flex;
-    justify-content: space-around;
-    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
     list-style: none;
 }
 
