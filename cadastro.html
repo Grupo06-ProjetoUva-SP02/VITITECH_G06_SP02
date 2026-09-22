@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_cadastro.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo_container">
+            <img src="" alt="">
+            <h1 class="logo">LOGO</h1>
+        </div>
+
+        <nav class="nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Calculadora</a></li>
+                <li><a href="#">Quem Somos</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <div class="formulario_login">
+            <div class="title">
+                <span>Cadastre-se</span>
+            </div>
+            <label for="ipt_email">E-mail:</label>
+            <input type="text" id="ipt_email">
+
+            <label for="ipt_CNPJ">CNPJ:</label>
+            <input type="text" id="ipt_CNPJ">
+
+            <label for="ipt_telefone">Telefone:</label>
+            <input type="text" id="ipt_telefone">
+
+            <label for="ipt_cep">CEP:</label>
+            <input type="text" id="ipt_cep">
+
+            <label for="ipt_senha">Senha:</label>
+            <input type="password" id="ipt_senha">
+
+            <label for="ipt_confirmarSenha">Confirmar senha:</label>
+            <input type="password" id="ipt_confirmarSenha">
+
+            <button onclick="verificar ()">Entrar</button>
+            <div class="link_cadastro">
+                Ainda não possui conta?
+                <a href="contato.html">Clique aqui</a>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</body>
+    <script>
+
+    function verificar () {
+        let email = ipt_email.value
+        let CNPJ = ipt_CNPJ.value
+        let telefone = ipt_telefone.value
+        let cep = ipt_cep.value
+        let senha = ipt_senha.value
+        let confirmarSenha = ipt_confirmarSenha.value
+
+        if (email == "" || CNPJ == "" || telefone == "" || cep == "" || senha == "" || confirmarSenha == "") {
+            alert (`Preencha todos os campos!`)
+        } else if (senha != confirmarSenha) {
+            alert (`As senhas não coincidem!`)
+        } else {
+            alert (`Cadastro realizado com sucesso!`)
+        } }
+    </script>
+</html>
