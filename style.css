@@ -311,7 +311,7 @@ body {
 }
 
 
-/* --------- CALCULADORA --------- */
+/* --------- CENARIO --------- */
 
 
 .containerCen {
@@ -330,7 +330,7 @@ body {
 }
 
 .containerCalcRigImg {
-    height: 100%;
+    height: 305px;
 }
 
 .containerCenItensList {
@@ -392,14 +392,14 @@ body {
 
 
 
-
+/* --------- FOOTER --------- */
 
 
 .containerFooterUva {
     width: 80px;
     height: 80px;
 
-    margin-left: 90px;
+    margin-left: clamp(30px, 5vw, 90px);
 }
 
 .containerFooter {
@@ -422,7 +422,7 @@ body {
 
     background: linear-gradient(to right, #944C9D 0%, #7A3E8F 100%);
 
-    padding: 60px 0px 60px 0px;
+    padding: 30px 5% 70px;
 }
 
 .containerFooterItem ul li{
@@ -440,4 +440,59 @@ body {
 .containerFooterItem {
     display: flex;
     flex-direction: column;
+}
+
+.containerFooterItemRedes {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    margin-top: 20px;
+}
+
+.containerFooterItemRedes a {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    color: white;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.containerFooterItemRedes a:hover {
+    opacity: 0.8;
+    transform: translateY(-3px);
+}
+
+
+.containerFooterItemRedes svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.containerFooterItemRedes .socialIconDot {
+    fill: currentColor;
+    stroke: none;
+}
+
+.containerFooterCopyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 56px;
+    padding: 0 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.55);
+    text-align: center;
+}
+
+.containerFooterCopyright p {
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.containerFooterCopyright strong {
+    font-weight: 800;
 }
