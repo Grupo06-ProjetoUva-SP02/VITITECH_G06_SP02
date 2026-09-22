@@ -25,7 +25,7 @@
     </header>
 
     <div class="banner">
-        <div class="formulario_login">
+        <div class="formulario_cadastro">
             <div class="title">
                 <span>Cadastre-se</span>
             </div>
@@ -42,15 +42,17 @@
             <input type="text" id="ipt_cep">
 
             <label for="ipt_senha">Senha:</label>
-            <input type="password" id="ipt_senha">
+            <input type="password" id="ipt_senha" onkeyup="verificarSenha()">
+
+            <div id="divSenha">A senha deve ter mais que 8 caracteres, uma letra maiúscula e uma mínuscula</div> <br>
 
             <label for="ipt_confirmarSenha">Confirmar senha:</label>
             <input type="password" id="ipt_confirmarSenha">
-
+            
             <button onclick="verificar ()">Entrar</button>
             <div class="link_cadastro">
-                Ainda não possui conta?
-                <a href="contato.html">Clique aqui</a>
+                Já possui uma conta?
+                <a href="login.html">Clique aqui</a>
             </div>
         </div>
     </div>
@@ -58,7 +60,8 @@
     </div>
 </body>
     <script>
-
+    
+    
     function verificar () {
         let email = ipt_email.value
         let CNPJ = ipt_CNPJ.value
@@ -74,5 +77,21 @@
         } else {
             alert (`Cadastro realizado com sucesso!`)
         } }
+
+    function verificarSenha(){
+    let senha = ipt_senha.value
+    if(senha.length >= 8){
+          divSenha.innerHTML = `<p style="color: red">Senha fraca</p>`
+          if(senha != senha.toUpperCase()){
+            divSenha.innerHTML = `<p style="color: yellow">Senha média</p>`
+            if(senha != senha.toLowerCase()){
+              divSenha.innerHTML = `<p style="color: green">Senha forte</p>`
+            }
+          }
+        } else {
+          divSenha.innerHTML = `<p style="color: red">Senha insegura</p>`
+        }
+    }
+
     </script>
 </html>

@@ -61,7 +61,7 @@ body {
     position: relative;
 }
 
-.formulario_login {
+.formulario_cadastro {
     display: flex;
     width: 1200px;
     height: 700px;
