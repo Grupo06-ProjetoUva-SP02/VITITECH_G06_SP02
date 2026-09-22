@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_login.css">
     <title>Document</title>
 </head>
+
 <body>
     <header class="header">
         <div class="logo_container">
-            <img src="" alt="">
+            <img src="../../assets/img/logo.svg" alt="">
             <h1 class="logo">LOGO</h1>
         </div>
 
+
         <nav class="nav">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Calculadora</a></li>
-                <li><a href="#">Quem Somos</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="../home/home.html">Home</a></li>
+                <li><a href="../calculadora/calculadora.html">Calculadora</a></li>
+                <li><a href="../home/home.html">Quem Somos</a></li>
+                <li><a href="../cadastro/cadastro.html">Contato</a></li>
+                <li><a href="../login/login.html">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -44,19 +47,19 @@
 
     </div>
 </body>
-    <script>
+<script>
 
-        function verificar () {
-            let login = ipt_email.value;
-            let senha = ipt_senha.value;
-            let login_fixo = 'RaianneLopes@vititech.com';
-            let senha_fixa = 'Teste123';
-            
+    function verificar() {
+        let login = ipt_email.value;
+        let senha = ipt_senha.value;
+        let login_fixo = 'RaianneLopes@vititech.com';
+        let senha_fixa = 'Teste123';
 
-            if (login != login_fixo || senha != senha_fixa) {
-                alert (`Seu E-mail ou Senha podem estar errados! Tente novamente.`)
-            }
+
+        if (login != login_fixo || senha != senha_fixa) {
+            alert(`Seu E-mail ou Senha podem estar errados! Tente novamente.`)
         }
-    </script>
-</html>
+    }
+</script>
 
+</html>

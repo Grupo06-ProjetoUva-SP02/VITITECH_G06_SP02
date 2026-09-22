@@ -1,69 +1,89 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VitiTech | Simulação Financeira</title>
     <link rel="stylesheet" href="style_calculadora.css">
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>VitiTech</h1>
-        <p class="titulo">Simulação Financeira</p>
-
-        <div class="simulador">
-            <label for="ipt_tamanhoVinhedo">Tamanho do vinhedo (hectares)</label>
-            <input type="number" id="ipt_tamanhoVinhedo">
-
-            <label for="ipt_valorUva">Valor da uva por Kg (R$)</label>
-            <input type="number" id="ipt_valorUva" value="6">
-
-            <label for="ipt_produtividadeMedia">Produtividade média anual (Kg)</label>
-            <input type="number" id="ipt_produtividadeMedia">
-
-            <label for="select_condicao">Condição do vinhedo</label>
-            <select id="select_condicao">
-                <option value="#" selected disabled>Selecione uma opção</option>
-                <option value="Seca Moderada">Estresse Hídrico Moderado (-15%)</option>
-                <option value="Seca Severa">Estresse Hídrico Severo (-40%)</option>
-                <option value="Encharcamento">Excesso de Umidade (-50%)</option>
-            </select>
-
-            <button onclick="calcular()">Simular</button>
-
-            <div id="div_resul"></div>
+    <header class="header">
+        <div class="logo_container">
+            <img src="../../assets/img/logo.svg" alt="">
+            <h1 class="logo">LOGO</h1>
         </div>
-    </div>
 
-    
+
+        <nav class="nav">
+            <ul>
+                <li><a href="../home/home.html">Home</a></li>
+                <li><a href="../calculadora/calculadora.html">Calculadora</a></li>
+                <li><a href="../home/home.html">Quem Somos</a></li>
+                <li><a href="../cadastro/cadastro.html">Contato</a></li>
+                <li><a href="../login/login.html">Login</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <h1>VitiTech</h1>
+            <p class="titulo">Simulação Financeira</p>
+
+            <div class="simulador">
+                <label for="ipt_tamanhoVinhedo">Tamanho do vinhedo (hectares)</label>
+                <input type="number" id="ipt_tamanhoVinhedo">
+
+                <label for="ipt_valorUva">Valor da uva por Kg (R$)</label>
+                <input type="number" id="ipt_valorUva" value="6">
+
+                <label for="ipt_produtividadeMedia">Produtividade média anual (Kg)</label>
+                <input type="number" id="ipt_produtividadeMedia">
+
+                <label for="select_condicao">Condição do vinhedo</label>
+                <select id="select_condicao">
+                    <option value="#" selected disabled>Selecione uma opção</option>
+                    <option value="Seca Moderada">Estresse Hídrico Moderado (-15%)</option>
+                    <option value="Seca Severa">Estresse Hídrico Severo (-40%)</option>
+                    <option value="Encharcamento">Excesso de Umidade (-50%)</option>
+                </select>
+
+                <button onclick="calcular()">Simular</button>
+
+                <div id="div_resul"></div>
+            </div>
+        </div>
+
+
 </body>
-    <script>
-        function calcular() {
-            let tamanho = Number(ipt_tamanhoVinhedo.value);
-            let valor = Number(ipt_valorUva.value);
-            let produtividade = Number(ipt_produtividadeMedia.value);
-            let condicao = select_condicao.value;
+<script>
+    function calcular() {
+        let tamanho = Number(ipt_tamanhoVinhedo.value);
+        let valor = Number(ipt_valorUva.value);
+        let produtividade = Number(ipt_produtividadeMedia.value);
+        let condicao = select_condicao.value;
 
-            let faturamentoIdeal = tamanho * valor * produtividade;
-            let prejuizo = 0;
+        let faturamentoIdeal = tamanho * valor * produtividade;
+        let prejuizo = 0;
 
-            if (condicao == "Seca Moderada") {
-                prejuizo = faturamentoIdeal * 0.15;
-            } else if (condicao == "Seca Severa") {
-                prejuizo = faturamentoIdeal * 0.40;
-            } else if (condicao == "Encharcamento") {
-                prejuizo = faturamentoIdeal * 0.50;
-            }
+        if (condicao == "Seca Moderada") {
+            prejuizo = faturamentoIdeal * 0.15;
+        } else if (condicao == "Seca Severa") {
+            prejuizo = faturamentoIdeal * 0.40;
+        } else if (condicao == "Encharcamento") {
+            prejuizo = faturamentoIdeal * 0.50;
+        }
 
-            let faturamentoReal = faturamentoIdeal - prejuizo;
+        let faturamentoReal = faturamentoIdeal - prejuizo;
 
-            div_resul.innerHTML = `
+        div_resul.innerHTML = `
                 Faturamento ideal: R$ ${faturamentoIdeal.toFixed(2)}<br>
                 Prejuízo estimado (${condicao}): R$ ${prejuizo.toFixed(2)}<br><br>
                 <strong>Faturamento real: R$ ${faturamentoReal.toFixed(2)}</strong>
             `;
-        }
-    </script>
+    }
+</script>
 </body>
+
 </html>
