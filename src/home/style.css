@@ -75,13 +75,13 @@ body {
     align-items: center;
 }
 
-.nav a {
+.nav a, a {
     text-decoration: none;
     color: var(--cor-texto-secundaria);
     transition: 0.5s ease;
 }
 
-.nav a:hover {
+.nav a:hover, a:hover {
     color: #e683ff;
 }
 
