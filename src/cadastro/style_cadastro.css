@@ -31,14 +31,23 @@ body {
 }
 
 .nav {
-    width: 75%;
+    width: 35%;
+    display: flex;
+    align-items: center;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    gap: 15px
 }
 
 .nav ul {
     display: flex;
-    justify-content: space-around;
-    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
     list-style: none;
+    align-items: center;
 }
 
 .nav a {
