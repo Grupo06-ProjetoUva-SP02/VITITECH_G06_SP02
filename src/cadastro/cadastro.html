@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_cadastro.css">
-    <title>Document</title>
+    <link rel="icon" type="image/svg+xml" href="../../assets/img/logo.svg">
+    <title>Cadastre-se</title>
 </head>
 <body>
     <header class="header">
@@ -33,7 +34,9 @@
                 <span>Cadastre-se</span>
             </div>
             <label for="ipt_email">E-mail:</label>
-            <input type="text" id="ipt_email">
+            <input type="text" id="ipt_email" onkeyup="verificarEmail()">
+
+            <div id="emailValidacao"></div>
 
             <label for="ipt_CNPJ">CNPJ:</label>
             <input type="text" id="ipt_CNPJ">
@@ -80,6 +83,21 @@
         } else {
             alert (`Cadastro realizado com sucesso!`)
         } }
+
+    function verificarEmail() {
+        let email = ipt_email.value;
+        let indice_com = email.indexOf('.com');
+        let indice_arroba = email.indexOf('@');
+        let arroba_antes_com = indice_arroba < indice_com;
+        let comeca_com_arroba = email.startsWith('@');
+        let contem_espaco = email.includes(' ');
+
+        if (!email || !indice_com == -1 || !indice_arroba == -1 || !arroba_antes_com || comeca_com_arroba || contem_espaco) {
+            emailValidacao.innerHTML = `<p style="color: red">Email Inválido</p>`
+        } else {
+            emailValidacao.innerHTML = `<p style="color: green">Email Válido</p>`
+        }
+    }
 
     function verificarSenha(){
     let senha = ipt_senha.value
