@@ -119,7 +119,6 @@ body {
 
 .banner p {
     color: #ffffff;
-    line-height: 50px;
     font-weight: 800;
 }
 
@@ -131,6 +130,10 @@ body {
 .button .container {
     display: flex;
     background-color: #e683ff;
+}
+
+.button {
+    margin-top: 25px;
 }
 
 .button a {
