@@ -82,18 +82,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/img/banner_cadastro.jpeg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/img/banner_login.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 100vh;
+    height: 90vh;
     position: relative;
 }
 
 .formulario_cadastro {
     display: flex;
-    width: 1200px;
-    height: 700px;
+    width: 1000px;
+    height: 600px;
     align-items: center;
     flex-direction: column;
     position: absolute;
