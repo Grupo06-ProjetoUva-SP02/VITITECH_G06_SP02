@@ -135,6 +135,10 @@ input {
     border: 1px solid #686565;
 }
 
+input:focus {
+    outline: none;
+    border-color: #cd18ff;
+}
 
 .container_inputs {
     display: flex;

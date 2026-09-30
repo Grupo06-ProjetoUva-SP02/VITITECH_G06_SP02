@@ -33,32 +33,35 @@
         </nav>
     </header>
 
-    <div class="container">
-        <h2 class="titulo">Simulação Financeira</h2>
-
-        <div class="simulador">
-            <label for="ipt_tamanhoVinhedo">Tamanho do vinhedo (hectares)</label>
-            <input type="number" id="ipt_tamanhoVinhedo">
-
-            <label for="ipt_valorUva">Valor da uva por Kg (R$)</label>
-            <input type="number" id="ipt_valorUva" value="6">
-
-            <label for="ipt_produtividadeMedia">Produtividade média anual (Kg)</label>
-            <input type="number" id="ipt_produtividadeMedia">
-
-            <label for="select_condicao">Condição do vinhedo</label>
-            <select id="select_condicao">
-                <option value="#" selected disabled>Selecione uma opção</option>
-                <option value="Seca Moderada">Estresse Hídrico Moderado (-15%)</option>
-                <option value="Seca Severa">Estresse Hídrico Severo (-40%)</option>
-                <option value="Encharcamento">Excesso de Umidade (-50%)</option>
-            </select>
-
-            <button onclick="calcular()">Simular</button>
-
-            <div id="div_resul"></div>
+    <div class="containerGeral">
+        <div class="container">
+            <h2 class="titulo">Simulação Financeira</h2>
+    
+            <div class="simulador">
+                <label for="ipt_tamanhoVinhedo">Tamanho do vinhedo (hectares)</label>
+                <input type="number" id="ipt_tamanhoVinhedo">
+    
+                <label for="ipt_valorUva">Valor da uva por Kg (R$)</label>
+                <input type="number" id="ipt_valorUva" value="6">
+    
+                <label for="ipt_produtividadeMedia">Produtividade média anual (Kg)</label>
+                <input type="number" id="ipt_produtividadeMedia">
+    
+                <label for="select_condicao">Condição do vinhedo</label>
+                <select id="select_condicao">
+                    <option value="#" selected disabled>Selecione uma opção</option>
+                    <option value="Seca Moderada">Estresse Hídrico Moderado (-15%)</option>
+                    <option value="Seca Severa">Estresse Hídrico Severo (-40%)</option>
+                    <option value="Encharcamento">Excesso de Umidade (-50%)</option>
+                </select>
+    
+                <button onclick="calcular()">Simular</button>
+    
+                <div id="div_resul"></div>
+            </div>
         </div>
     </div>
+
 
 
 </body>
