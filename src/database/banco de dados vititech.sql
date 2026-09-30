@@ -1,4 +1,6 @@
+-- CRIANDO O BANCO DE DADOS VITITECH
 
+CREATE DATABASE vititech;
 
 USE vititech;
 
@@ -64,3 +66,9 @@ fk_sensor INT,
 CONSTRAINT fkSensor FOREIGN KEY (fk_sensor) 
 								REFERENCES sensor(idSensor)
 );
+
+-- CRIAÇÃO DO USUÁRIO DA API
+
+CREATE USER 'user_insert'@'localhost' IDENTIFIED BY 'urubu100';
+
+GRANT INSERT ON vititech.* TO 'user_insert'@'localhost';
