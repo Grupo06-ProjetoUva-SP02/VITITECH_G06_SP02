@@ -24,12 +24,11 @@ body {
     position: fixed;
     width: 99vw;
     background-color: var(--cor-principal);
+    border-bottom: 2px solid #d400ff;
     display: flex;
     justify-content: space-between;
     padding: 10px;
     align-items: center;
-    border-bottom: solid 2px;
-    border-color: var(--cor-fundo);
 }
 
 .nav {
