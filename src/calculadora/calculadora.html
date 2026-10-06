@@ -11,7 +11,7 @@
 
 <body>
 
-  <header class="header">
+    <header class="header">
         <div class="logo-container">
             <img src="../../assets/img/logo.svg" alt="">
             <H1 class="logo">VITITECH</h1>
@@ -36,27 +36,29 @@
     <div class="containerGeral">
         <div class="container">
             <h2 class="titulo">Simulação Financeira</h2>
-    
+
             <div class="simulador">
                 <label for="ipt_tamanhoVinhedo">Tamanho do vinhedo (hectares)</label>
                 <input type="number" id="ipt_tamanhoVinhedo">
-    
-                <label for="ipt_valorUva">Valor da uva por Kg (R$)</label>
-                <input type="number" id="ipt_valorUva" value="6">
-    
+
+                <label for="ipt_valorUva">exemplar da uva</label>
+                <select name="exemplar da uva" id="ipt_valorUva">
+                    <option value="" disabled selected hidden>Exemplar da uva</option>
+                    <option value="9"> Cabernet Sauvignon</option>
+                    <option value="8">Tempranillo</option>
+                    <option value="9">malbec</option>
+                    <option value="11">Pinot noir</option>
+                    <option value="8">Merlot </option>
+                    <option value="10">Chardonnay</option>
+                </select>
+
                 <label for="ipt_produtividadeMedia">Produtividade média anual (Kg)</label>
                 <input type="number" id="ipt_produtividadeMedia">
-    
-                <label for="select_condicao">Condição do vinhedo</label>
-                <select id="select_condicao">
-                    <option value="#" selected disabled>Selecione uma opção</option>
-                    <option value="Seca Moderada">Estresse Hídrico Moderado (-15%)</option>
-                    <option value="Seca Severa">Estresse Hídrico Severo (-40%)</option>
-                    <option value="Encharcamento">Excesso de Umidade (-50%)</option>
-                </select>
-    
+
+
+
                 <button onclick="calcular()">Simular</button>
-    
+
                 <div id="div_resul"></div>
             </div>
         </div>
@@ -73,24 +75,21 @@
         let tamanho = Number(ipt_tamanhoVinhedo.value);
         let valor = Number(ipt_valorUva.value);
         let produtividade = Number(ipt_produtividadeMedia.value);
-        let condicao = select_condicao.value;
-
+        let condicao = 0.37
+        let viti_tech = 1
         let faturamentoIdeal = tamanho * valor * produtividade;
         let prejuizo = 0;
 
-        if (condicao == "Seca Moderada") {
-            prejuizo = faturamentoIdeal * 0.15;
-        } else if (condicao == "Seca Severa") {
-            prejuizo = faturamentoIdeal * 0.40;
-        } else if (condicao == "Encharcamento") {
-            prejuizo = faturamentoIdeal * 0.50;
+
+        if (viti_tech == 1) {
+            prejuizo = faturamentoIdeal * 0.37;
         }
 
         let faturamentoReal = faturamentoIdeal - prejuizo;
 
         div_resul.innerHTML = `
                 Faturamento ideal: R$ ${faturamentoIdeal.toFixed(2)}<br>
-                Prejuízo estimado (${condicao}): R$ ${prejuizo.toFixed(2)}<br><br>
+                Prejuízo  estimado e de cerca de: R$ ${prejuizo.toFixed(2)}<br><br>
                 <strong>Faturamento real: R$ ${faturamentoReal.toFixed(2)}</strong>
             `;
     }
