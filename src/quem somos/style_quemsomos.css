@@ -93,13 +93,12 @@ body {
 .container-servicos {
     background-color: var(--cor-principal);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 20px;
     border-bottom-left-radius: 35px;
     border-bottom-right-radius: 35px;
 }
-
 
 .containerCenTitle {
     font-weight: 900;
@@ -107,7 +106,7 @@ body {
     text-transform: uppercase;
     color: #efebf0;
 
-    margin-top: 80px;
+    
 }
 
 .containerCen {
@@ -120,7 +119,15 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;   
-    height: 300px;
+    height: 100px;
+}
+
+.servicos {
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+
 }
 
 .servico {
@@ -128,8 +135,10 @@ body {
     margin: 10px;
     display: flex;
     flex-direction: column;
-    padding: 40px;
-    border-radius: 15px;
+    padding: 22px;
+    border-radius: 100px;
+    border: solid, 2px;
+    
 }
 
 
