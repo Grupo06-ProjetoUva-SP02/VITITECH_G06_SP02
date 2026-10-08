@@ -76,6 +76,13 @@ CONSTRAINT fkSensor FOREIGN KEY (fk_sensor)
 								REFERENCES sensor(idSensor)
 );
 
+-- Criação de tabela de alertas
+CREATE TABLE alerta (
+idAlerta INT PRIMARY KEY AUTO_INCREMENT,
+fk_medida INT,
+FOREIGN KEY (fk_medida) REFERENCES medida(idMedida)
+);
+
 /*
 				CRIAÇÃO DO USUÁRIO
 CREATE USER 'user_insert'@'localhost' IDENTIFIED BY 'urubu100';
@@ -165,3 +172,14 @@ END AS 'Situação'
 FROM medida AS m 
 JOIN sensor AS s ON m.fk_sensor = s.idSensor
 JOIN uva AS u ON s.fk_tipoUva = u.id; 
+
+-- SELECT PARA VER MAIS INFORMAÇÕES DO ALERTA
+SELECT 
+    alerta.idAlerta,
+    alerta.tipo_alerta,
+    medida.umidade,
+    medida.data_horario,
+    sensor.area_instalada
+FROM alerta
+JOIN medida ON alerta.fk_medida = medida.idMedida
+JOIN sensor ON medida.fk_sensor = sensor.idSensor;
