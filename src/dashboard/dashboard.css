@@ -33,38 +33,41 @@ body {
     color: #8d4899;
 }
 
-.header-left .icon img {
-    width: 24px;
-    height: 24px;
-}
-
-.btn-nav,
-.btn-nav-white,
-.btn-logout {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.btn-nav h3,
-.btn-nav-white h3,
-.btn-logout h3 {
-    font-size: 15px;
-    font-weight: normal;
+.header-left img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle; /*alinhar a imagem com o LINK*/
+    margin-right: 8px;
 }
 
 .btn-nav {
-    background-color: #8d4899;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /*ocupa toda a largura que tem disponível*/
+    gap: 20px;
+    padding: 10px;
+}
+
+.btn-nav a{ 
+    font-size: 12px;
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #ffffff;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.btn-nav a:hover {
+    background-color: #ddcce0;
     color: white;
 }
 
-.btn-nav-white a {
-    text-decoration: none;
-    color: #333;
+.btn-nav a.ativo {
+    background-color: #8d4899;
+    color: white;
+    border-radius: 8px;
 }
 
 .btn-logout {
