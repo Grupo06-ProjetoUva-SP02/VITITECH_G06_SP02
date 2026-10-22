@@ -116,7 +116,7 @@
         <div class="header right">
 
             <div class="title">
-                <h2>Baias</23>
+                <h2>Baias</h2>
             </div>
 
             <div class="card">
@@ -172,10 +172,10 @@
         </div>
     </div>
 
-    <div id="grafico1" style="height:50vh; width:900vw">
+    <div id="grafico1">
         <canvas id="umidadePeriodo"></canvas>
     </div>
-    <div id="grafico2" style="position: relative; height:40vh; width:80vw">
+    <div id="grafico2">
         <canvas id="mediaPeriodo"></canvas>
     </div>
 
@@ -202,6 +202,7 @@
       }]
     },
     options: {
+      maintainAspectRatio: false,
       scales: {
         y: {
           beginAtZero: true
@@ -239,6 +240,7 @@
       }]
     },
     options: {
+      maintainAspectRatio: false,
       scales: {
         y: {
           beginAtZero: true

@@ -9,65 +9,61 @@ body {
     background-color: white;
 }
 
-/* menu esquerdo */
+/* menu esquerdo*/
 .header-left {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 220px;
+    width: 212px;
     height: 100vh;
-    padding: 20px 16px;
-    background-color: white;
-    border-right: 1px solid #d9d9d9;
+    padding: 28px 16px 20px 16px;
+    background-color: #964f9c;
 }
 
 .header-left .title {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 64px;
 }
 
 .header-left .title h1 {
-    font-size: 24px;
-    color: #8d4899;
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
 }
 
 .header-left img {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle; /*alinhar a imagem com o LINK*/
-    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+.header-left .title img {
+    width: 36px;
+    height: 36px;
+    margin-right: 0;
 }
 
 .btn-nav {
     display: flex;
     flex-direction: column;
-    align-items: stretch; /*ocupa toda a largura que tem disponível*/
-    gap: 20px;
-    padding: 10px;
+    gap: 7px;
 }
 
-.btn-nav a{ 
-    font-size: 12px;
-    display: inline-block;
-    padding: 8px 20px;
-    background-color: #ffffff;
-    color: black;
+.btn-nav a {
+    font-size: 14px;
+    display: block;
+    padding: 14px;
+    color: white;
     text-decoration: none;
-    cursor: pointer;
     border-radius: 8px;
 }
 
-.btn-nav a:hover {
-    background-color: #ddcce0;
-    color: white;
-}
-
+.btn-nav a:hover,
 .btn-nav a.ativo {
-    background-color: #8d4899;
-    color: white;
-    border-radius: 8px;
+    background-color: #ab6fb1;
 }
 
 .btn-logout {
@@ -75,25 +71,31 @@ body {
     bottom: 20px;
     left: 16px;
     right: 16px;
-    color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-logout h3 {
+    font-size: 14px;
+    font-weight: normal;
 }
 
 /* baias*/
 .header.right {
-    position: absolute;
+    position: fixed;
     top: 0;
-    left: 1056px;             
-    width: 260px;
+    right: 0;
+    width: 230px;
     height: 100vh;
-    padding: 20px 16px;
+    padding: 26px 12px;
     background-color: white;
-    border-left: 1px solid #d9d9d9;
+    border-left: 1px solid #8d4899;
 }
 
 .header.right .title h2 {
-    font-size: 16px;
-    color: #5e1f6b;
-    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 24px;
 }
 
 .card {
@@ -101,19 +103,25 @@ body {
     align-items: center;
     gap: 10px;
     padding: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
     border: 1px solid #d9d9d9;
-    border-radius: 8px;
+    border-radius: 10px;
+}
+
+/* o primeiro card plimplim */
+.card:first-of-type {
+    background-color: #ead7ee;
+    border: 1px solid #8d4899;
 }
 
 .card h3 {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: normal;
 }
 
 .card .container {
-    width: 40px;
-    height: 28px;
+    width: 44px;
+    height: 40px;
     background-color: #e4e4e4;
     border-radius: 6px;
     display: flex;
@@ -121,13 +129,27 @@ body {
     justify-content: center;
 }
 
-/* kpis*/
+.card .container h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+/* o first-of-type ele pega a primeira div dentro do pai*/
+.card:first-of-type .container { /**/
+    background-color: #8d4899;
+}
+
+.card:first-of-type .container h3 {
+    color: white;
+}
+
+/* kpi*/
 .janela {
-    max-width: 800px;
     margin-left: 240px;
-    padding-top: 20px;
+    margin-right: 258px;
+    padding-top: 75px;
     display: flex;
-    gap: 16px;
+    gap: 29px;
 }
 
 .kpi1,
@@ -135,31 +157,39 @@ body {
 .kpi3 {
     position: relative;
     flex: 1;
-    min-height: 112px;
-    padding: 16px 10px 16px 64px;
-    text-align: center;
-    border-radius: 12px;
+    height: 120px;
+    padding: 14px 24px;
+    text-align: left;
+    border-radius: 18px;
 }
 
 .kpi1 h3,
 .kpi2 h3,
 .kpi3 h3 {
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 .kpi1 h1,
 .kpi2 h1,
 .kpi3 h1 {
-    font-size: 28px;
-    margin: 5px 0;
+    font-size: 26px;
+    margin: 4px 0 0 6px;
 }
 
+
 .kpi1 {
-    background-color: #ff3b3b;
+    background-color: #ead7ee;
+    border: 1px solid #8d4899;
+    color: #5e1f6b;
+}
+
+.kpi2 {
+    background-color: #0fd62a;
+    border: 1px solid #0a9c1e;
     color: white;
 }
 
-.kpi2,
 .kpi3 {
     background-color: #ead7ee;
     border: 1px solid #8d4899;
@@ -169,50 +199,27 @@ body {
 .kpi1 .container,
 .kpi2 .container,
 .kpi3 .container {
-    position: absolute;
-    top: 35px;
-    left: 12px;
-    width: 40px;
-    height: 40px;
+    display: none;
 }
 
-.kpi1 .container img,
-.kpi2 .container img,
-.kpi3 .container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 40px;
-    height: 40px;
-}
-
-.kpi1 .container img + img,
-.kpi2 .container img + img,
-.kpi3 .container img + img {
-    top: 10px;
-    left: 10px;
-    width: 20px;
-    height: 20px;
-}
-
-/* gráfico */
 #grafico1,
 #grafico2 {
-    position: relative;
+    position: relative;      
     overflow: hidden;
-    max-width: 800px;         
     margin-left: 240px;
-    margin-top: 20px;
-    padding: 16px;
-    background-color: #faf8fb;
+    margin-right: 258px;
+    margin-top: 28px;
+    padding: 0;
+    background-color: #f9f9f9;
     border: 1px solid #8d4899;
-    border-radius: 12px;
+    border-radius: 20px;
 }
 
 #grafico1 {
-    max-height: 38vh;         
+    height: 42vh;
 }
 
 #grafico2 {
-    margin-bottom: 20px;      
+    height: 32vh;
+    margin-bottom: 20px;
 }
