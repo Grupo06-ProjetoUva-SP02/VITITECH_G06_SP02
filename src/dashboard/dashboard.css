@@ -153,8 +153,7 @@ body {
 }
 
 .kpi1,
-.kpi2,
-.kpi3 {
+.kpi2 {
     position: relative;
     flex: 1;
     height: 120px;
@@ -164,15 +163,13 @@ body {
 }
 
 .kpi1 h3,
-.kpi2 h3,
-.kpi3 h3 {
+.kpi2 h3 {
     font-size: 14px;
     font-weight: normal;
 }
 
 .kpi1 h1,
-.kpi2 h1,
-.kpi3 h1 {
+.kpi2 h1 {
     font-size: 26px;
     margin: 4px 0 0 6px;
 }
@@ -184,21 +181,15 @@ body {
     color: #5e1f6b;
 }
 
-.kpi2 {
-    background-color: #0fd62a;
-    border: 1px solid #0a9c1e;
-    color: white;
-}
 
-.kpi3 {
+.kpi2 {
     background-color: #ead7ee;
     border: 1px solid #8d4899;
     color: #5e1f6b;
 }
 
 .kpi1 .container,
-.kpi2 .container,
-.kpi3 .container {
+.kpi2 .container {
     display: none;
 }
 
@@ -215,9 +206,16 @@ body {
     border-radius: 20px;
 }
 
+.title_grafico{
+    text-align: center;
+    margin-top: 30px;
+    color: #5e1f6b;
+}
+
 #grafico1 {
     height: 42vh;
 }
+
 
 #grafico2 {
     height: 32vh;
