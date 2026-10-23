@@ -165,3 +165,17 @@ button:hover {
     line-height: 1.5;
     font-size: 15px;
 }
+
+#div_bases:empty {
+    display: none;
+}
+
+#div_bases {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #FFF;
+    border-radius: 8px;
+    line-height: 1.5;
+    font-size: 15px;
+    border: solid 1px #000;
+}

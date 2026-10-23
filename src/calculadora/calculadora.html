@@ -46,7 +46,7 @@
                     <option value="" disabled selected hidden>Exemplar da uva</option>
                     <option value="9"> Cabernet Sauvignon</option>
                     <option value="8">Tempranillo</option>
-                    <option value="9">malbec</option>
+                    <option value="9">Malbec</option>
                     <option value="11">Pinot noir</option>
                     <option value="8">Merlot </option>
                     <option value="10">Chardonnay</option>
@@ -58,8 +58,10 @@
 
 
                 <button onclick="calcular()">Simular</button>
+                <button onclick="basesCalculo()">Bases de calculo</button>
 
                 <div id="div_resul"></div>
+                <div id="div_bases"></div>
             </div>
         </div>
     </div>
@@ -92,5 +94,18 @@
                 Prejuízo  estimado e de cerca de: R$ ${prejuizo.toFixed(2)}<br><br>
                 <strong>Faturamento real: R$ ${faturamentoReal.toFixed(2)}</strong>
             `;
+    }
+
+    // Função que mostra as bases de calculo
+    function basesCalculo(){
+        div_bases.innerHTML = `
+                    <b>Média de preço por kg das uvas: </b> <br>
+                    Cabernet Sauvignon: R$ 9,00 <br>
+                    Tempranillo: R$ 8,00 <br>
+                    Malbec: R$ 9,00 <br>
+                    Pinot Noir: R$ 11,00 <br>
+                    Merlot: R$ 8,00 <br>
+                    Chardonnay: R$ 10,00 <br>
+        `
     }
 </script>
