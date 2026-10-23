@@ -405,16 +405,24 @@ body {
     height: 100px;
     object-fit: cover;
     overflow: hidden;
+    transform: scale(1.67);
 }
 
 .containerIntegrantes{
-    background-color: var(--cor-principal);
+    background-color: var(--cor-fundo);
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     padding: 20px;
-    border-bottom-left-radius: 35px;
-    border-bottom-right-radius: 35px;
+}
+
+.containerIntegrante{
+    background-color: var(--cor-fundo);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
 }
 
 .containerPerfil{
