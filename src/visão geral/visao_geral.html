@@ -40,10 +40,16 @@
                 </a>
             </div> -->
 
-            
+
             <nav class="btn-nav">
-                <h3>Olá, José!</h3>
-                
+
+                <div class="perfil">
+                    <div class="container_perfil">
+                        <img src="../../assets/img/user.svg" alt="">
+                    </div>
+                    <h3>Olá, José!</h3>
+                </div>
+
                 <a href="visao_geral.html" class="ativo">
                     <img src="../../assets/img/visao_geral.svg" alt="">Visão Geral
                 </a>
@@ -51,6 +57,11 @@
                 <a href="baias.html">
                     <img src="../../assets/img/baias.svg" alt="">Baias
                 </a>
+
+                <a href="/src/relatorio/relatorio.html">
+                    <img src="../../assets/img/relatorio.svg" alt="">Relatório
+                </a>
+
             </nav>
 
             <div class="btn-logout" onclick="limparSessao()">
@@ -62,30 +73,47 @@
 
         </div>
 
-        <div>
-            <a href="">Finca Adriana</a>
-            <p>Status</p>
-            <h3>Stress Hídrico Elevado</h3>
-            <p>ESTADO CRÍTICO</p>
+        <div class="visao_geral">
+            <h2>Visão Geral das Propriedades</h2>
+            <p class="text">Acompanhe os status de cada propriedade monitorada pelo sistema.</p>
         </div>
+        
+        <div class="card">
+            
+
+            <div class="critico">
+                <p class="propriedade"><b>Finca Adriana</b></p>
+                <p class="status">Status</p>
+                <span>Stress Hídrico Elevado</span>
+                <div class="bnt_critico">
+                    <a href="../dashboard/pagina_user.html"><h3> <img src="../../assets/img/atencao.png" alt=""> ESTADO CRÍTICO </h3></a>
+                </div>
+            </div>
 
 
-        <div>
-            <a href="">Finca Angélica</a>
-            <p>Status</p>
-            <h3>Possível Risco Hídrico</h3>
-            <p>MONITORAMENTO</p>
-        </div>
+            <div class="monitoramento">
+                <p class="propriedade"><b>Finca Angélica</b></p>
+                <p class="status">Status</p>
+                <span>Possível Risco Hídrico</span>
+                <div class="bnt_monitorar">
+                    <a href="../dashboard/pagina_user.html"><h3> <img src="../../assets/img/relogio-de-ponto.png" alt=""> MONITORAMENTO </h3></a>
+                </div>
+            </div>
 
 
-        <div>
-            <a href="">Finca Nicasia</a>
-            <p>Status</p>
-            <h3>Umidade Ideal</h3>
-            <p>NORMAL</p>
+            <div class="ideal">
+                <p class="propriedade"><b>Finca Nicasia</b></p>
+                <p class="status">Status</p>
+                <span>Umidade Ideal</span>
+                <div class="btn_ideal">
+                    <a href="../dashboard/pagina_user.html"><h3> <img src="../../assets/img/verificar.png" alt=""> NORMAL </h3></a>
+                </div>
+            </div>
+
         </div>
-        </div>
+
     </div>
+
 
 
 </body>

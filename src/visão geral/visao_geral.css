@@ -2,14 +2,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: white;
+    background-color: #F6F7FC;
 }
 
 /* menu esquerdo*/
+
 .header-left {
     position: fixed;
     top: 0;
@@ -18,6 +19,7 @@ body {
     height: 100vh;
     padding: 28px 16px 20px 16px;
     background-color: #964f9c;
+    z-index: 100;
 }
 
 .header-left .title {
@@ -44,6 +46,24 @@ body {
     width: 36px;
     height: 36px;
     margin-right: 0;
+}
+
+.perfil .container_perfil {
+    display: flex;
+    justify-content: center;
+}
+
+.perfil img {
+    display: flex;
+    width: 60px;
+    height: 100px;
+}
+
+.perfil h3 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: white
 }
 
 .btn-nav {
@@ -78,4 +98,174 @@ body {
 .btn-logout h3 {
     font-size: 14px;
     font-weight: normal;
+}
+
+/* --------- Visão Geral --------- */
+
+.visao_geral h2 {
+    display: flex;
+    align-self: flex-start;
+    margin-left: 250px;
+    margin-top: 30px;
+    color: #1F124B;
+    font-family: 'Nunito';
+    font-size: 220%;
+}
+
+.visao_geral .text {
+    display: flex;
+    align-self: flex-start;
+    margin-left: 250px;
+    margin-top: 5px;
+    color: #716693;
+    font-size: 120%;
+    font-family: 'nunito';
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    margin-top: 100px;
+    margin-left: 150px;
+    gap: 10px;
+}
+
+
+.card a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
+
+.card .propriedade {
+    display: flex;
+    align-self: flex-start;
+    color:#2B1F5B;
+    padding: 20px;
+
+}
+
+.card .status {
+    display: flex;
+    align-self: flex-start;
+    color: #aba6b9;
+    margin-left: 20px;
+}
+
+.card .critico {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 27vh;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    border-top: 2px solid;
+    border-color: #D47683;
+
+}
+
+
+.card .critico span {
+    display: flex;
+    align-self: flex-start;
+    color:#e25658;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.card .bnt_critico img {
+    display: flex;
+    height: 4vh;
+}
+
+.card .bnt_critico h3 {
+    display: flex;
+    width: 17vw;
+    align-items: center;
+    background-color: #E67386;
+    color: white;
+    border-radius: 10px;
+    padding: 3px;
+    font-size: 70%;
+
+}
+
+
+.card .monitoramento {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 27vh;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    border-top: 2px solid;
+    border-color: #EBD074;
+
+}
+
+.card .monitoramento span {
+    display: flex;
+    align-self: flex-start;
+    color: #e1c079;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+
+.card .bnt_monitorar img{ 
+    display: flex;
+    height: 4vh;
+}
+
+.card .bnt_monitorar h3 {
+    display: flex;
+    width: 17vw;
+    align-items: center;
+    background-color: #FEF3D7;
+    color: #D3B259;
+    border-radius: 10px;
+    padding: 3px;
+    font-size: 70%;
+}
+
+
+.card .ideal {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 27vh;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    border-top: 2px solid;
+    border-color: #5ABC80;
+}
+
+
+
+.card .ideal span {
+    display: flex;
+    align-self: flex-start;
+    color: #57b47c;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.card .btn_ideal img {
+    display: flex;
+    height: 4vh;
+}
+
+.card .btn_ideal h3 {
+    display: flex;
+    width: 17vw;
+    align-items: center;
+    background-color: #9cd7b4;
+    color: #39844E;
+    border-radius: 10px; 
+    padding: 3px;
+    font-size: 70%;
 }
