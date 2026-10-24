@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+/* menu esquerdo*/
+.header-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 212px;
+    height: 100vh;
+    padding: 28px 16px 20px 16px;
+    background-color: #964f9c;
+}
+
+.header-left .title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 64px;
+}
+
+.header-left .title h1 {
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.header-left img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+.header-left .title img {
+    width: 36px;
+    height: 36px;
+    margin-right: 0;
+}
+
+.btn-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.btn-nav a {
+    font-size: 14px;
+    display: block;
+    padding: 14px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.btn-nav a:hover,
+.btn-nav a.ativo {
+    background-color: #ab6fb1;
+}
+
+.btn-logout {
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-logout h3 {
+    font-size: 14px;
+    font-weight: normal;
+}
