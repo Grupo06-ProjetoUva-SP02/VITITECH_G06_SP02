@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="#">
+    <link rel="icon" type="image/svg+xml" href="../../assets/img/logo.svg">
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- Importa o script do chartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>baia1</title>
+</head>
+
+<body>
+
+    <div class="janela">
+
+        <div class="header-left">
+
+            <div class="title">
+                <div class="icon">
+                    <img src="../../assets/img/logo.svg" alt="">
+                </div>
+                <h1>Vititech</h1>
+
+            </div>
+            <!-- 
+            <div class="btn-nav">
+                <div class="icon">
+                    <img src="../../assets/img/visao_geral.svg" alt="">
+                </div>
+                <h3>Visão Geral</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <div class="icon">
+                    <img src="../../assets/img/baias.svg" alt="">
+                </div>
+                <a href="#">
+                    <h3>Baias</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <div class="icon">
+                    <img src="../../assets/img/alerta.svg" alt="">
+                </div>
+                <a href="#">
+                    <h3>Alertas</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <div class="icon">
+                    <img src="../../assets/img/relatorio.svg" alt="">
+                </div>
+                <a href="#">
+                    <h3>Relatórios</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <div class="icon">
+                    <img src="../../assets/img/configuracao.svg" alt="">
+                </div>
+                <a href="#">
+                    <h3>Configurações</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <div class="icon">
+                    <img src="../../assets/img/user.svg" alt="">
+                </div>
+                <a href="#">
+                    <h3>Usuário</h3>
+                </a>
+            </div> -->
+
+            <nav class="btn-nav">
+                <a href="visao_geral.html" class="ativo">
+                    <img src="../../assets/img/visao_geral.svg" alt="">Visão Geral
+                </a>
+
+                <a href="baias.html">
+                    <img src="../../assets/img/baias.svg" alt="">Baias
+                </a>
+
+                <a href="alertas.html">
+                    <img src="../../assets/img/alerta.svg" alt="">Alertas
+                </a>
+
+                <a href="/src/relatorio/relatorio.html">
+                    <img src="../../assets/img/relatorio.svg" alt="">Relatórios
+                </a>
+
+                <a href="configuracoes.html">
+                    <img src="../../assets/img/configuracao.svg" alt="">Configurações
+                </a>
+
+                <a href="usuario.html">
+                    <img src="../../assets/img/user.svg" alt="">Usuário
+                </a>
+            </nav>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <div class="icon">
+                    <img src="../../assets/img/icone_sair.svg" alt="">
+                </div>
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+       <div class="header right">
+
+    <div class="title">
+        <h2>Baias</h2>
+    </div>
+
+    <a href="vermelha1.html" class="link-baia">
+        <div class="card">
+            <div class="container">
+                <h3>01</h3>
+            </div>
+            <h3>Baia 01 | 21%</h3>
+        </div>
+    </a>
+
+    <a href="vermelha2.html" class="link-baia">
+        <div class="card">
+            <div class="container">
+                <h3>02</h3>
+            </div>
+            <h3>Baia 02 | 21%</h3>
+        </div>
+    </a>
+
+    <a href="vermelha3.html" class="link-baia">
+        <div class="card">
+            <div class="container">
+                <h3>03</h3>
+            </div>
+            <h3>Baia 03 | 21%</h3>
+        </div>
+    </a>
+</div>
+        <div class="kpi1">
+            <div class="container">
+                <img src="../../assets/img/icone_bola.svg" alt="">
+                <img src="../../assets/img/umidade.svg" alt="">
+
+            </div>
+            <h3>Umidade Atual</h3>
+            <h1>21%</h1>
+            <h3>Abaixo da faixa ideal</h3>
+        </div>
+
+
+        <div class="kpi2">
+            <div class="container">
+                <img src="../../assets/img/icone_bola.svg" alt="">
+                <img src="../../assets/img/umidade.svg" alt="">
+
+            </div>
+            <h3>Faixa de umidade no solo ideal</h3>
+            <h1>40% - 70%</h1>
+        </div>
+    </div>
+
+    <div class="title_grafico">
+        <h2>Umidade do Solo em Tempo Real</h2>
+    </div>
+
+    <div id="grafico1">
+        <canvas id="umidadePeriodo"></canvas>
+    </div>
+
+
+    <div class="title_grafico">
+        <h2>Horários semanais de maior e menor incidência de umidade do solo</h2>
+    </div>
+
+    <div id="grafico2">
+        <canvas id="mediaPeriodo"></canvas>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const umidadePeriodo = document.getElementById('umidadePeriodo');
+    const mediaPeriodo = document.getElementById('mediaPeriodo');
+
+    new Chart(umidadePeriodo, {
+        type: 'line',
+        data: {
+            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+            datasets: [{
+                label: 'Umidade do solo por período',
+                data: [20, 24, 22, 35, 20, 25],
+                borderWidth: 3,
+                borderColor: '#8d4899',
+                backgroundColor: '#8d4899',
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(mediaPeriodo, {
+        type: 'bar',
+        data: {
+            labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+
+            // define os dados do gráfico de barras
+            datasets: [{
+                label: 'Umidade mínima',
+                data: [20, 20, 22, 21, 60, 70],
+                borderRadius: 25,
+                backgroundColor: '#0ED425',
+            },
+            {
+                label: 'Umidade máxima',
+                data: [31, 28, 24, 26, 70, 85],
+                borderWidth: 1,
+                backgroundColor: '#FF5850',
+                borderRadius: 25,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+
+        }
+    });
+</script>
