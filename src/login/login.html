@@ -10,7 +10,7 @@
 </head>
 
 <body>
-      <header class="header">
+    <header class="header">
         <div class="logo-container">
             <img src="../../assets/img/logo.svg" alt="">
             <H1 class="logo">VITITECH</h1>
@@ -57,16 +57,36 @@
     </div>
 </body>
 <script>
+    let bloqueada = false;
 
     function verificar() {
-        let login = ipt_email.value;
-        let senha = ipt_senha.value;
-        let login_fixo = 'RaianneLopes@vititech.com';
-        let senha_fixa = 'Teste123';
+        if (bloqueada == true) {
+            alert('Conta bloqueada! Não é possível fazer login.');
+        } else {
+            let login = ipt_email.value;
+            let senha = ipt_senha.value;
+            let login_fixo = 'RaianneLopes@vititech.com';
+            let senha_fixa = 'Teste123';
+            let max_tentativas = 3;
+            let acertou = false;
 
+            for (let tentativa = 1; tentativa <= max_tentativas && acertou == false; tentativa++) {
 
-        if (login != login_fixo || senha != senha_fixa) {
-            alert(`Seu E-mail ou Senha podem estar errados! Tente novamente.`)
+                if (login == login_fixo && senha == senha_fixa) {
+                    acertou = true;
+                } else if (tentativa < max_tentativas) {
+                    alert('Dados incorretos! Você tem mais ' + (max_tentativas - tentativa) + ' tentativa(s).');
+                    login = prompt('Digite seu E-mail novamente:');
+                    senha = prompt('Digite sua Senha novamente:');
+                }
+            }
+
+            if (acertou == true) {
+                alert('Login realizado com sucesso!');
+            } else {
+                bloqueada = true;
+                alert('Conta bloqueada!');
+            }
         }
     }
 </script>
