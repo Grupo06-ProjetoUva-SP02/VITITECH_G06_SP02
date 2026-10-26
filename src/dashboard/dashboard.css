@@ -237,7 +237,30 @@ body {
 
 .kpi1 .container,
 .kpi2 .container {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 14px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+}
+
+.kpi1 .container img,
+.kpi2 .container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.kpi1 .container img + img,
+.kpi2 .container img + img {
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
 }
 
 #grafico1,
