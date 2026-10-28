@@ -167,20 +167,11 @@
                 <img src="../../assets/img/umidade.svg" alt="">
 
             </div>
-            <h3>Umidade Atual</h3>
+            <h3 style="color: #e6dee8;" class="umidadeKpi">Umidade Atual</h3>
             <h1>21%</h1>
-            <h3>Abaixo da faixa ideal</h3>
+            <h3 class="text">Abaixo da faixa ideal</h3>
         </div>
 
-        <div class="kpi2">
-            <div class="container">
-                <img src="../../assets/img/icone_bola.svg" alt="">
-                <img src="../../assets/img/umidade.svg" alt="">
-
-            </div>
-            <h3>Faixa de umidade no solo ideal</h3>
-            <h1>40% - 70%</h1>
-        </div>
 
         <div class="kpi3">
             <div class="container1">
@@ -189,7 +180,7 @@
             <div class="container2">
                 <p>Alertas de hoje:</p>
                 <h1>8 alertas</h1>
-                <p class="text">Semana passada: 5 alertas</p>
+                <p style="color: rgb(98, 98, 98);" class="text">3+ que semana passada.</p>
             </div>
         </div>
     </div>
@@ -244,7 +235,7 @@
     new Chart(mediaPeriodo, {
         type: 'bar',
         data: {
-            labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+            labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira'],
 
             // define os dados do gráfico de barras
             datasets: [{
