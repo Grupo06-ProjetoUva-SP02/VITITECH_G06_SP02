@@ -18,13 +18,18 @@ body {
     height: 100vh;
     padding: 28px 16px 20px 16px;
     background-color: #964f9c;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .header-left .title {
     display: flex;
-    align-items: center;
     gap: 10px;
+    width: 182px;
     margin-bottom: 64px;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-left .title h1 {
@@ -73,6 +78,12 @@ body {
     right: 16px;
     color: white;
     cursor: pointer;
+
+    
+    display: flex;
+    align-items: center;
+    
+    margin-left: 21px;
 }
 
 .btn-logout h3 {
@@ -294,4 +305,91 @@ body {
 #grafico2 {
     height: 32vh;
     margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.botaoVoltar {
+    position: absolute;
+    top: 20px;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.botaoVoltar img {
+    width: 24px;
+}
+
+
+
+
+
+
+.containerLegenda {
+        position: absolute;
+        top: 20px;
+        left: 324px;
+
+        display: flex;
+}
+
+
+.legenda-umidade {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    padding: 4px 12px;
+    font-family: inherit;
+    font-size: 12px;
+    color: #514456;
+
+    background-color: #fff8dc;
+    border: 1px solid #e5bd42;
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+.legenda-umidade__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+}
+
+.legenda-umidade__cor {
+    width: 9px;
+    height: 9px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.legenda-umidade__cor--bom {
+    background: #22a65a;
+}
+
+.legenda-umidade__cor--atencao {
+    background: #eab308;
+}
+
+.legenda-umidade__cor--ruim {
+    background: #e5484d;
+}
+
+.legenda-umidade__faixa {
+    color: #766b7b;
 }
