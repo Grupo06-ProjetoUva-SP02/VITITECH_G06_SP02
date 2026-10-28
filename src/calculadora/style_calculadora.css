@@ -33,6 +33,7 @@ body {
     align-items: center;
     border-bottom: 2px solid #d400ff;
     box-shadow: 0 1px 10px #c702ee;
+    padding: 10px 30px 10px 10px;
 }
 
 .logo-container{

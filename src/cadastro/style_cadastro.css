@@ -9,7 +9,13 @@
 body {
     background-color: var(--cor-fundo);
 
-    overflow: hidden;
+    /* overflow: hidden; */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/img/banner_login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    padding-bottom: 20px;
 }
 
 :root {
@@ -22,13 +28,14 @@ body {
 
 .header {
     position: fixed;
-    width: 99vw;
+    width: 97vw;
     background-color: var(--cor-principal);
     border-bottom: 2px solid #d400ff;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    align-items: center;
+    padding: 10px 30px 10px 10px;
+    align-items: center;    
+    z-index: 10;
 }
 
 .nav {
@@ -83,16 +90,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/img/banner_login.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
 }
 
 .formulario_cadastro {
+    margin-top: 100px;
     display: flex;
-    width: 1000px;
+    width: 600px;
     padding: 30px 0px;
     align-items: center;
     flex-direction: column;
