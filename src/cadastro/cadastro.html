@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="icon" type="image/svg+xml" href="../../assets/img/logo.svg">
     <title>Cadastre-se</title>
 </head>
+
 <body>
     <header class="header">
         <div class="logo-container">
@@ -35,15 +37,16 @@
             </div>
 
             <div class="container_inputs">
-                <label for="ipt_email">Código de ativação:</label>
-                <input type="text" id="ipt_email" placeholder="Insira o código de ativação fornecido" onkeyup="verificarEmail()">
+                <label for="ipt_codigo">Código de ativação:</label>
+                <input type="text" id="ipt_codigo" placeholder="Insira o código de ativação fornecido"
+                    onkeyup="verificarEmail()">
             </div>
 
-            <div class="container_inputs">                
+            <div class="container_inputs">
                 <label for="ipt_telefone">Nome:</label>
                 <input type="text" placeholder="Insira seu nome" id="ipt_nome">
             </div>
-            
+
             <div class="container_inputs">
                 <label for="ipt_email">E-mail:</label>
                 <input type="text" id="ipt_email" placeholder="Insira seu email" onkeyup="verificarEmail()">
@@ -51,25 +54,26 @@
 
             <div id="emailValidacao"></div>
 
-            
+
             <div class="container_inputs">
-                <label for="ipt_CNPJ">CPF:</label>
+                <label for="ipt_CPF">CPF:</label>
                 <input type="text" placeholder="Insira seu CPF" id="ipt_CPF">
             </div>
 
-            <div class="container_inputs">                
+            <div class="container_inputs">
                 <label for="ipt_senha">Senha:</label>
                 <input type="password" id="ipt_senha" placeholder="Insira sua senha" onkeyup="verificarSenha()">
-                <div id="divSenha">A senha deve ter mais que 8 caracteres, uma letra maiúscula e uma mínuscula</div> <br>
+                <div id="divSenha">A senha deve ter mais que 8 caracteres, uma letra maiúscula e uma mínuscula</div>
+                <br>
             </div>
 
 
-            <div class="container_inputs">                
+            <div class="container_inputs">
                 <label for="ipt_confirmarSenha">Confirmar senha:</label>
                 <input type="password" id="ipt_confirmarSenha" placeholder="Confirme sua senha">
             </div>
-            
-            <button onclick="verificar ()">Cadastrar</button>
+
+            <button onclick="verificar()">Cadastrar</button>
             <div class="link_cadastro">
                 Já possui uma conta?
                 <a href="../login/login.html">Clique aqui</a>
@@ -79,53 +83,38 @@
 
     </div>
 </body>
-    <script>
-    
-    
-    function verificar () {
-        let email = ipt_email.value
-        let cpf = ipt_CPF.value
-        let nome = ipt_nome.value
-        let senha = ipt_senha.value
-        let confirmarSenha = ipt_confirmarSenha.value
+<script>
+        function verificar() {
+            let codigo = ipt_codigo.value
+            let email = ipt_email.value
+            let cpf = ipt_CPF.value
+            let nome = ipt_nome.value
+            let senha = ipt_senha.value
+            let confirmarSenha = ipt_confirmarSenha.value
+            let indice_com = email.indexOf('.com')
+            let indice_arroba = email.indexOf('@')
+            let arroba_antes_com = indice_arroba < indice_com
+            let comeca_com_arroba = email.startsWith('@')
+            let contem_espaco = email.includes(' ')
 
-        if (email == "" || cpf == "" || nome == "" || senha == "" || confirmarSenha == "") {
-            alert (`Preencha todos os campos!`)
-        } else if (senha != confirmarSenha) {
-            alert (`As senhas não coincidem!`)
-        } else {
-            alert (`Cadastro realizado com sucesso!`)
-        } }
-
-    function verificarEmail() {
-        let email = ipt_email.value;
-        let indice_com = email.indexOf('.com');
-        let indice_arroba = email.indexOf('@');
-        let arroba_antes_com = indice_arroba < indice_com;
-        let comeca_com_arroba = email.startsWith('@');
-        let contem_espaco = email.includes(' ');
-
-        if (!email || !indice_com == -1 || !indice_arroba == -1 || !arroba_antes_com || comeca_com_arroba || contem_espaco) {
-            emailValidacao.innerHTML = `<p style="color: red">Email Inválido</p>`
-        } else {
-            emailValidacao.innerHTML = `<p style="color: green">Email Válido</p>`
-        }
-    }
-
-    function verificarSenha(){
-    let senha = ipt_senha.value
-    if(senha.length >= 8){
-          divSenha.innerHTML = `<p style="color: red">Senha fraca</p>`
-          if(senha != senha.toUpperCase()){
-            divSenha.innerHTML = `<p style="color: yellow">Senha média</p>`
-            if(senha != senha.toLowerCase()){
-              divSenha.innerHTML = `<p style="color: green">Senha forte</p>`
+            if (codigo == "" || email == "" || cpf == "" || nome == "" || senha == "" || confirmarSenha == "") {
+                alert(`Preencha todos os campos!`)
+            } else if (codigo != "CODIGO1" && codigo != "CODIGO2" && codigo != "CODIGO3") {
+                alert(`Código de ativação inválido!`)
+            } else if (indice_com == -1 || indice_arroba == -1 || !arroba_antes_com || comeca_com_arroba || contem_espaco) {
+                alert(`E-mail inválido!`)
+            } else if (cpf.length != 11) {
+                alert(`CPF inválido!`)
+            } else if (senha.length < 8 || senha == senha.toUpperCase() || senha == senha.toLowerCase()) {
+                alert(`Senha inválida!`)
+            } else if (senha != confirmarSenha) {
+                alert(`As senhas não coincidem!`)
+            } else {
+                alert(`Cadastro realizado com sucesso!`)
             }
-          }
-        } else {
-          divSenha.innerHTML = `<p style="color: red">Senha insegura</p>`
         }
-    }
+    
 
-    </script>
+</script>
+
 </html>

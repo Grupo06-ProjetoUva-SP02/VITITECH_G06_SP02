@@ -46,49 +46,52 @@
                 <label for="ipt_senha">Senha:</label>
                 <input type="password" id="ipt_senha">
             </div>
-            <button onclick="verificar ()">Entrar</button>
+            <button onclick="verificar()">Entrar</button>
             <div class="link_cadastro">
                 Ainda não possui conta?
                 <a href="../cadastro/cadastro.html">Clique aqui</a>
+                    <div id="div_msg"></div>
+
             </div>
         </div>
     </div>
 
     </div>
 </body>
+
 <script>
-    let bloqueada = false;
+const login_fixo = 'pao';
+const senha_fixa = 'pao';
+let tentativas = 3;
 
-    function verificar() {
-        if (bloqueada == true) {
-            alert('Conta bloqueada! Não é possível fazer login.');
+let lista_de_erros = [];
+
+function verificar() {
+    let login = ipt_email.value;
+    let senha = ipt_senha.value;
+    let erro = 0;
+
+    if (tentativas > 0) {
+        if (login == login_fixo && senha == senha_fixa) {
+            div_msg.innerHTML = `Login válido!`
         } else {
-            let login = ipt_email.value;
-            let senha = ipt_senha.value;
-            let login_fixo = 'RaianneLopes@vititech.com';
-            let senha_fixa = 'Teste123';
-            let max_tentativas = 3;
-            let acertou = false;
-
-            for (let tentativa = 1; tentativa <= max_tentativas && acertou == false; tentativa++) {
-
-                if (login == login_fixo && senha == senha_fixa) {
-                    acertou = true;
-                } else if (tentativa < max_tentativas) {
-                    alert('Dados incorretos! Você tem mais ' + (max_tentativas - tentativa) + ' tentativa(s).');
-                    login = prompt('Digite seu E-mail novamente:');
-                    senha = prompt('Digite sua Senha novamente:');
+            lista_de_erros.push(erro)
+            tentativas--
+            div_msg.innerHTML = ``
+            for (let contador = 0; contador < lista_de_erros.length; contador++) {
+                erro++
+                if (tentativas > 0) {
+                    div_msg.innerHTML = `E-mail ou senha incorretos! Tentativas restantes: ${tentativas}. Tente novamente.<br>`
+                } else {
+                    div_msg.innerHTML = `Você atingiu o limite de tentativas!`
                 }
             }
-
-            if (acertou == true) {
-                alert('Login realizado com sucesso!');
-            } else {
-                bloqueada = true;
-                alert('Conta bloqueada!');
-            }
         }
+    } else {
+        div_msg.innerHTML = `Você atingiu o limite de tentativas!`
     }
+}
+
 </script>
 
 </html>
