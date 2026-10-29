@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="dashboard.css">
     <!-- Importa o script do chartJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>baia1</title>
+    <title>Perfil Vititech</title>
 </head>
 
 <body>
@@ -87,85 +87,100 @@
                     <img src="../../assets/img/baias.svg" alt="">Baias
                 </a>
 
-                <a href="alertas.html">
-                    <img src="../../assets/img/alerta.svg" alt="">Alertas
-                </a>
 
                 <a href="/src/relatorio/relatorio.html">
                     <img src="../../assets/img/relatorio.svg" alt="">Relatórios
                 </a>
 
-                <a href="configuracoes.html">
-                    <img src="../../assets/img/configuracao.svg" alt="">Configurações
-                </a>
-
-                <a href="usuario.html">
-                    <img src="../../assets/img/user.svg" alt="">Usuário
-                </a>
-            </nav>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <div class="icon">
-                    <img src="../../assets/img/icone_sair.svg" alt="">
+                <div class="btn-logout" onclick="limparSessao()">
+                    <div class="icon">
+                        <img src="../../assets/img/icone_sair.svg" alt="">
+                    </div>
+                    <h3>Sair</h3>
                 </div>
-                <h3>Sair</h3>
-            </div>
 
         </div>
 
-       <div class="header right">
+        <div class="header right">
 
-    <div class="title">
-        <h2>Baias</h2>
-    </div>
-
-    <a href="vermelha1.html" class="link-baia">
-        <div class="card">
-            <div class="container">
-                <h3>01</h3>
+            <div class="title">
+                <h2>Baias</h2>
             </div>
-            <h3>Baia 01 | 21%</h3>
-        </div>
-    </a>
 
-    <a href="vermelha2.html" class="link-baia">
-        <div class="card">
-            <div class="container">
-                <h3>02</h3>
+            <div style="background-color: #c55dd7b1;border: 1px solid #8d4899;" class="card">
+                <div style="background-color: #8d4899;" class="container">
+                    <h3 style="color: #fffdff;">01</h3>
+                </div>
+                <h3 style="font-weight: 600;">Baia 01 | 21%</h3>
             </div>
-            <h3>Baia 02 | 21%</h3>
-        </div>
-    </a>
 
-    <a href="vermelha3.html" class="link-baia">
-        <div class="card">
-            <div class="container">
-                <h3>03</h3>
+            <div class="card">
+                <div class="container">
+                    <h3>02</h3>
+                </div>
+                <h3>Baia 02 | 21%</h3>
             </div>
-            <h3>Baia 03 | 21%</h3>
+
+            <div class="card">
+                <div class="container">
+                    <h3>03</h3>
+                </div>
+                <h3>Baia 03 | 21%</h3>
+            </div>
         </div>
-    </a>
-</div>
+
+        <div class="botaoVoltar">
+            <a style="display: flex;align-items: center; gap: 10px; text-decoration: none; color: black;"
+                href="/src/visão geral/visao_geral.html">
+                <img src="../../assets/img/backButton.svg" alt="">
+                <p style="font-size: 14px;font-weight: 600;">Voltar</p>
+            </a>
+        </div>
+
+        <div class="containerLegenda">
+
+            <div class="legenda-umidade" role="group" aria-label="Legenda da umidade">
+            <span class="legenda-umidade__item">
+                <span class="legenda-umidade__cor legenda-umidade__cor--bom" aria-hidden="true"></span>
+                <strong>Bom</strong>
+                <span class="legenda-umidade__faixa">— --% a --%</span>
+            </span>
+
+            <span class="legenda-umidade__item">
+                <span class="legenda-umidade__cor legenda-umidade__cor--atencao" aria-hidden="true"></span>
+                <strong>Atenção</strong>
+                <span class="legenda-umidade__faixa">— --% a --%</span>
+            </span>
+
+            <span class="legenda-umidade__item">
+                <span class="legenda-umidade__cor legenda-umidade__cor--ruim" aria-hidden="true"></span>
+                <strong>Ruim</strong>
+                <span class="legenda-umidade__faixa">— --% a --%</span>
+            </span>
+        </div>
+
+        </div>
+
         <div class="kpi1">
             <div class="container">
-                <img src="../../assets/img/icone_bola.svg" alt="">
-                <img src="../../assets/img/umidade.svg" alt="">
+                <img src="../../assets/img/png.png" alt="">
 
             </div>
-            <h3>Umidade Atual</h3>
+            <h3 style="color: #e6dee8;" class="umidadeKpi">Umidade Atual</h3>
             <h1>21%</h1>
-            <h3>Abaixo da faixa ideal</h3>
+            <h3 class="text">Abaixo da faixa ideal</h3>
         </div>
 
 
-        <div class="kpi2">
-            <div class="container">
-                <img src="../../assets/img/icone_bola.svg" alt="">
-                <img src="../../assets/img/umidade.svg" alt="">
-
+        <div class="kpi3">
+            <div class="container1">
+                <img src="../../assets/img/alerta_kpi.png" alt="">
             </div>
-            <h3>Faixa de umidade no solo ideal</h3>
-            <h1>40% - 70%</h1>
+            <div class="container2">
+                <p>Alertas de hoje:</p>
+                <h1>8 alertas</h1>
+                <p style="color: rgb(98, 98, 98);" class="text">3+ que semana passada.</p>
+            </div>
         </div>
     </div>
 
@@ -200,7 +215,7 @@
             labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
             datasets: [{
                 label: 'Umidade do solo por período',
-                data: [22,24,25,22,21,22],
+                data: [50, 60, 70, 80, 50, 70],
                 borderWidth: 3,
                 borderColor: '#8d4899',
                 backgroundColor: '#8d4899',
@@ -219,18 +234,18 @@
     new Chart(mediaPeriodo, {
         type: 'bar',
         data: {
-            labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+            labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira'],
 
             // define os dados do gráfico de barras
             datasets: [{
                 label: 'Umidade mínima',
-                data: [24,22,23,22,25],
+                data: [50, 60, 70, 80, 60, 70],
                 borderRadius: 25,
                 backgroundColor: '#0ED425',
             },
             {
                 label: 'Umidade máxima',
-                data: [32,33,31,28],
+                data: [60, 70, 80, 90, 70, 85],
                 borderWidth: 1,
                 backgroundColor: '#FF5850',
                 borderRadius: 25,
