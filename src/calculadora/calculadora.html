@@ -91,9 +91,9 @@
         let faturamentoReal = faturamentoIdeal - prejuizo;
 
         div_resul.innerHTML = `
+                Prejuízo estimado: R$ ${prejuizo.toFixed(2)}<br><br>
+                <strong>Faturamento real <span style="color: #ff5f5f; ;">sem a parceria da VitiTech:</span> R$ ${faturamentoReal.toFixed(2)}</strong>
                 Faturamento ideal <span style="color: #00ff00;;">com a parceria da VitiTech:</span> R$ ${faturamentoIdeal.toFixed(2)}<br>
-                Prejuízo  estimado e de cerca de: R$ ${prejuizo.toFixed(2)}<br><br>
-                <strong>Faturamento real <span style="color: #ff5f5f;;">sem a parceria da VitiTech:</span> R$ ${faturamentoReal.toFixed(2)}</strong>
             `;
     }
 

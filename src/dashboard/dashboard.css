@@ -382,11 +382,15 @@ body {
     font-family: inherit;
     font-size: 12px;
     color: #514456;
-
+    
     background-color: #fff8dc;
     border: 1px solid #e5bd42;
     border-radius: 8px;
     padding: 6px 12px;
+}
+
+.legenda-umidade  p{
+    font-size: 14px;
 }
 
 .legenda-umidade__item {
