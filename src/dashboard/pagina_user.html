@@ -83,20 +83,14 @@
                     <img src="../../assets/img/visao_geral.svg" alt="">Visão Geral
                 </a>
 
-                <a href="baias.html">
-                    <img src="../../assets/img/baias.svg" alt="">Baias
-                </a>
-
-
-                <a href="/src/relatorio/relatorio.html">
+                <a href="#">
                     <img src="../../assets/img/relatorio.svg" alt="">Relatórios
                 </a>
 
                 <div class="btn-logout" onclick="limparSessao()">
-                    <div class="icon">
-                        <img src="../../assets/img/icone_sair.svg" alt="">
-                    </div>
-                    <h3>Sair</h3>
+                    <a href="../login/login.html" class="icon">
+                        <img src="../../assets/img/icone_sair.svg" alt=""> Sair
+                    </a>
                 </div>
 
         </div>
@@ -131,7 +125,7 @@
 
         <div class="botaoVoltar">
             <a style="display: flex;align-items: center; gap: 10px; text-decoration: none; color: black;"
-                href="/src/visão geral/visao_geral.html">
+                href="../visao_geral/visao_geral.html">
                 <img src="../../assets/img/backButton.svg" alt="">
                 <p style="font-size: 14px;font-weight: 600;">Voltar</p>
             </a>
@@ -140,24 +134,24 @@
         <div class="containerLegenda">
 
             <div class="legenda-umidade" role="group" aria-label="Legenda da umidade">
-            <span class="legenda-umidade__item">
-                <span class="legenda-umidade__cor legenda-umidade__cor--bom" aria-hidden="true"></span>
-                <strong>Bom</strong>
-                <span class="legenda-umidade__faixa">— --% a --%</span>
-            </span>
+                <span class="legenda-umidade__item">
+                    <span class="legenda-umidade__cor legenda-umidade__cor--bom" aria-hidden="true"></span>
+                    <strong>Bom</strong>
+                    <span class="legenda-umidade__faixa">— 40% a 70%</span>
+                </span>
 
-            <span class="legenda-umidade__item">
-                <span class="legenda-umidade__cor legenda-umidade__cor--atencao" aria-hidden="true"></span>
-                <strong>Atenção</strong>
-                <span class="legenda-umidade__faixa">— --% a --%</span>
-            </span>
+                <span class="legenda-umidade__item">
+                    <span class="legenda-umidade__cor legenda-umidade__cor--atencao" aria-hidden="true"></span>
+                    <strong>Atenção</strong>
+                    <span class="legenda-umidade__faixa">— 35% ou 75%</span>
+                </span>
 
-            <span class="legenda-umidade__item">
-                <span class="legenda-umidade__cor legenda-umidade__cor--ruim" aria-hidden="true"></span>
-                <strong>Ruim</strong>
-                <span class="legenda-umidade__faixa">— --% a --%</span>
-            </span>
-        </div>
+                <span class="legenda-umidade__item">
+                    <span class="legenda-umidade__cor legenda-umidade__cor--ruim" aria-hidden="true"></span>
+                    <strong>Ruim</strong>
+                    <span class="legenda-umidade__faixa">— menor que 35% ou maior que 75%</span>
+                </span>
+            </div>
 
         </div>
 
@@ -215,7 +209,7 @@
             labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
             datasets: [{
                 label: 'Umidade do solo por período',
-                data: [50, 60, 70, 80, 50, 70],
+                data: [50, 60, 70, 80, 50, 21],
                 borderWidth: 3,
                 borderColor: '#8d4899',
                 backgroundColor: '#8d4899',

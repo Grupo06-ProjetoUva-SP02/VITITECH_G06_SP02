@@ -89,6 +89,11 @@ body {
     background-color: #ab6fb1;
 }
 
+.btn-logout a {
+    text-decoration: none;
+    color: white;
+}
+
 .btn-logout {
     position: absolute;
     bottom: 20px;

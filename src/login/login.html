@@ -46,11 +46,11 @@
                 <label for="ipt_senha">Senha:</label>
                 <input type="password" id="ipt_senha">
             </div>
+            <div id="div_msg"></div>
             <button onclick="verificar()">Entrar</button>
             <div class="link_cadastro">
                 Ainda não possui conta?
                 <a href="../cadastro/cadastro.html">Clique aqui</a>
-                    <div id="div_msg"></div>
 
             </div>
         </div>
@@ -60,26 +60,33 @@
 </body>
 
 <script>
-const login_fixo = 'pao';
-const senha_fixa = 'pao';
+
+    // definindo variáveis
+
+const login_fixo = 'cliente@gmail.com';
+const senha_fixa = '123456';
 let tentativas = 3;
 
 let lista_de_erros = [];
+let erro = 0;
 
 function verificar() {
     let login = ipt_email.value;
     let senha = ipt_senha.value;
-    let erro = 0;
+
+    // validação se possui tentaivas de erro
 
     if (tentativas > 0) {
-        if (login == login_fixo && senha == senha_fixa) {
+        if (login === login_fixo && senha === senha_fixa) {
             div_msg.innerHTML = `Login válido!`
+
+            window.location.href = '../visao_geral/visao_geral.html' // código utilizado para linkar páginas locais
         } else {
             lista_de_erros.push(erro)
             tentativas--
             div_msg.innerHTML = ``
-            for (let contador = 0; contador < lista_de_erros.length; contador++) {
-                erro++
+            for (erro = 0; erro < lista_de_erros.length; erro++) {
+
                 if (tentativas > 0) {
                     div_msg.innerHTML = `E-mail ou senha incorretos! Tentativas restantes: ${tentativas}. Tente novamente.<br>`
                 } else {
