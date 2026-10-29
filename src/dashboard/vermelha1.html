@@ -204,8 +204,13 @@
     const umidadePeriodo = document.getElementById('umidadePeriodo');
     const mediaPeriodo = document.getElementById('mediaPeriodo');
 
+    // Definição dos limites dos graficos.
+    const limiteInferior = 40;
+    const limiteSuperior = 70;
+
     new Chart(umidadePeriodo, {
         type: 'line',
+
         data: {
             labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
             datasets: [{
@@ -213,25 +218,75 @@
                 data: [50, 60, 70, 80, 50, 21],
                 borderWidth: 3,
                 borderColor: '#8d4899',
-                backgroundColor: '#8d4899',
+                backgroundColor: '#8d4899'
             }]
         },
+
         options: {
+            responsive: true,
             maintainAspectRatio: false,
+
             scales: {
                 y: {
-                    beginAtZero: true
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 10,
+                        callback: (valor) => `${valor}%`
+                    }
                 }
             }
-        }
-    });
+        },
 
+        plugins: [{
+            id: 'linhas-referencia',
+
+            beforeDatasetsDraw(chart) {
+                const { ctx, chartArea, scales } = chart;
+                if (!chartArea) return;
+
+                const limites = [
+                    { valor: limiteInferior, texto: 'Limite inferior' },
+                    { valor: limiteSuperior, texto: 'Limite superior' }
+                ];
+
+                ctx.save();
+                ctx.strokeStyle = '#ef4444';
+                ctx.fillStyle = '#b91c1c';
+                ctx.lineWidth = 2;
+                ctx.font = '600 12px Arial';
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'bottom';
+
+                limites.forEach(({ valor, texto }) => {
+                    if (valor < scales.y.min || valor > scales.y.max) return;
+
+                    const posicaoY = scales.y.getPixelForValue(valor);
+
+                    // Aqui é onde o chartJS desenha o gráfico.
+                    ctx.beginPath();
+                    ctx.moveTo(chartArea.left, posicaoY);
+                    ctx.lineTo(chartArea.right, posicaoY);
+                    ctx.stroke();
+
+                    // Identifica aonde é o limite.
+                    ctx.fillText(
+                        `${texto}: ${valor}%`,
+                        chartArea.right - 8,
+                        posicaoY - 6
+                    );
+                });
+
+                ctx.restore();
+            }
+        }]
+    });
     new Chart(mediaPeriodo, {
         type: 'bar',
         data: {
             labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira'],
 
-            // define os dados do gráfico de barras
+            // aqui é onde define os dados do gráfico de barras
             datasets: [{
                 label: 'Umidade mínima',
                 data: [50, 60, 70, 80, 60, 70],
