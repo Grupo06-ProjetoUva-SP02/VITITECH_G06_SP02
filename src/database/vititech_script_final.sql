@@ -1,9 +1,6 @@
--- Criação do banco de dados
 CREATE DATABASE vititech;
 
 USE vititech;
-
--- TABELA EMPRESA
 
 CREATE TABLE empresa (
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -21,12 +18,10 @@ idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(90),
 email VARCHAR(60) UNIQUE,
 cpf CHAR(11) UNIQUE,
-senha VARCHAR(40),
+senha VARCHAR(50),
 fk_empresa INT,
-perfil TINYINT,
 CONSTRAINT fkEmpresa FOREIGN KEY (fk_empresa)
 								REFERENCES empresa(idEmpresa)
-
 );
 
 -- TABELA PROPRIEDADE
@@ -40,6 +35,7 @@ CONSTRAINT fk_Empresa FOREIGN KEY (fk_empresa)
 								REFERENCES empresa(idEmpresa)
 );
 
+
 -- TABELA TIPOS DE UVA
 CREATE TABLE uva(
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -48,20 +44,30 @@ minUmidade DECIMAL(5,2),
 maxUmidade DECIMAL(5,2)
 );
 
+
+-- TABELA BAIA
+
+CREATE TABLE baia (
+idBaia INT PRIMARY KEY AUTO_INCREMENT,
+area DECIMAL(10,2),
+fk_propriedade INT,
+fk_uva INT,
+CONSTRAINT fkPropriedade FOREIGN KEY (fk_propriedade)
+									REFERENCES propriedade(idPropriedade),
+CONSTRAINT fkUva FOREIGN KEY (fk_uva)
+							REFERENCES uva(id)
+
+);
+
 -- TABELA SENSOR
 
 CREATE TABLE sensor (
 idSensor INT PRIMARY KEY AUTO_INCREMENT,
 area_instalada DECIMAL (10,2),
 ativo TINYINT,
-fk_empresa INT,
-fk_propriedade INT,
-CONSTRAINT fk_EmpresaSensor FOREIGN KEY (fk_empresa) 
-								REFERENCES empresa(idEmpresa),
-CONSTRAINT fkPropriedade FOREIGN KEY (fk_propriedade) 
-								REFERENCES propriedade(idPropriedade),
-fk_tipoUva INT,
-FOREIGN KEY (fk_tipoUva) REFERENCES uva(id)
+fk_baia INT,
+CONSTRAINT fkBaia FOREIGN KEY (fk_baia)
+								REFERENCES baia(idBaia)
 );
 
 
@@ -71,17 +77,13 @@ CREATE TABLE medida (
 idMedida INT PRIMARY KEY AUTO_INCREMENT,
 umidade INT,
 data_horario DATETIME DEFAULT CURRENT_TIMESTAMP,
+nivel_alerta INT,
 fk_sensor INT,
+CONSTRAINT nivelAlerta CHECK (nivel_alerta IN ('1', '2', '3')),
 CONSTRAINT fkSensor FOREIGN KEY (fk_sensor) 
 								REFERENCES sensor(idSensor)
 );
 
--- Criação de tabela de alertas
-CREATE TABLE alerta (
-idAlerta INT PRIMARY KEY AUTO_INCREMENT,
-fk_medida INT,
-FOREIGN KEY (fk_medida) REFERENCES medida(idMedida)
-);
 
 /*
 				CRIAÇÃO DO USUÁRIO
@@ -99,11 +101,11 @@ INSERT INTO empresa (razao_social, cnpj, cod_ativacao, telefone, email) VALUES
 
 -- 2. INSERINDO USUÁRIOS
 -- CPFs com 11 caracteres. Perfil: 1 (Admin/Gerente), 2 (Operador/Técnico)
-INSERT INTO usuario (nome, email, cpf, senha, fk_empresa, perfil) VALUES
-('Carlos Alberto Bento', 'carlos@valedasavas.com.br', '11122233344', 'senha123', 1, 1),
-('Fernanda Lima', 'fernanda@adegaserrasul.com.br', '55566677788', 'senha456', 2, 1),
-('Ricardo Mendes', 'ricardo@adegaserrasul.com.br', '99900011122', 'senha789', 2, 2),
-('Juliana Costa', 'juliana@vinhossr.com.br', '33344455566', 'senha321', 3, 1);
+INSERT INTO usuario (nome, email, cpf, senha, fk_empresa) VALUES
+('Carlos Alberto Bento', 'carlos@valedasavas.com.br', '11122233344', 'senha123', 1),
+('Fernanda Lima', 'fernanda@adegaserrasul.com.br', '55566677788', 'senha456', 2),
+('Ricardo Mendes', 'ricardo@adegaserrasul.com.br', '99900011122', 'senha789', 2),
+('Juliana Costa', 'juliana@vinhossr.com.br', '33344455566', 'senha321', 3);
 
 -- 3. INSERINDO PROPRIEDADES
 -- Fazendas e filiais vinculadas às empresas, localizadas em estados produtores (RS, SP)
@@ -118,24 +120,32 @@ INSERT INTO uva(nome, minUmidade, maxUmidade) VALUES
 ('Carbenet Suavignon', 50, 75), 
 ('Carbenet Malbec', 60, 75);
 
--- 5. INSERINDO SENSORES
+-- 5. INSERINDO BAIAS
+-- Baias vinculadas às propriedades da empresa
+INSERT INTO baia (area, fk_propriedade, fk_uva) VALUES
+('5.00', 1, 1),
+('7.00', 2, 1),
+('1.5', 3, 2);
+
+-- 6. INSERINDO SENSORES
 -- Vinculando aos respectivos idEmpresa e idPropriedade. 
 -- Ativo: 1 (Ligado/Funcionando), 0 (Desligado/Manutenção)
-INSERT INTO sensor (area_instalada, ativo, fk_empresa, fk_propriedade, fk_tipoUva) VALUES
-(150.50, 1, 1, 1, 1), -- Sensor 1 da Empresa 1, Propriedade 1
-(200.00, 1, 1, 1, 2), -- Sensor 2 da Empresa 1, Propriedade 1
-(350.75, 1, 2, 2, 2), -- Sensor 3 da Empresa 2, Propriedade 2
-(120.00, 0, 2, 2, 1), -- Sensor 4 da Empresa 2, Propriedade 2 (Em manutenção)
-(500.25, 1, 2, 3, 1), -- Sensor 5 da Empresa 2, Propriedade 3
-(80.00, 1, 3, 4, 1);  -- Sensor 6 da Empresa 3, Propriedade 4
+INSERT INTO sensor (area_instalada, ativo, fk_baia) VALUES
+(150.50, 1, 1), -- Sensor 1 da Empresa 1, Propriedade 1
+(200.00, 1, 1), -- Sensor 2 da Empresa 1, Propriedade 1
+(350.75, 1, 2), -- Sensor 3 da Empresa 2, Propriedade 2
+(120.00, 0, 2), -- Sensor 4 da Empresa 2, Propriedade 2 (Em manutenção)
+(500.25, 1, 3), -- Sensor 5 da Empresa 2, Propriedade 3
+(80.00, 1, 3);  -- Sensor 6 da Empresa 3, Propriedade 3
 
--- SELECT PARA VER O TIPO DE UVA QUE O SENSOR ESTÁ MEDINDO
+-- SELECT PARA VER O TIPO DE UVA POR BAIA
 SELECT
-s.idSensor AS 'Sensor',
+b.idBaia AS 'Baia',
 u.nome AS 'Tipo de uva'
-FROM sensor AS s
-JOIN uva AS u ON fk_tipoUva = u.id;
+FROM baia AS b
+JOIN uva AS u ON fk_uva = u.id;
 
+-- VER TODOS OS SENSORES
 SELECT * FROM sensor;
 
 -- SELECT MEDIDA
@@ -146,40 +156,31 @@ TRUNCATE medida;
 
 -- SELECT DA MEDIDA COM O MINIMO, MAXIMO E TIPO DE UVA
 SELECT
-m.data_horario AS 'Data e Hora da Medição',
 m.umidade AS 'Umidade',
 s.idSensor AS 'Sensor',
+b.idBaia AS 'Baia',
 u.nome AS 'Tipo de uva',
-u.minUmidade AS 'Minimo de Umidade',
-u.maxUmidade AS 'Máximo de Umidade'
-FROM medida AS m 
+u.minUmidade AS 'Umidade minima',
+maxUmidade AS 'Umidade Máxima'
+FROM medida AS m
 JOIN sensor AS s ON m.fk_sensor = s.idSensor
-JOIN uva AS u ON s.fk_tipoUva = u.id;
+JOIN baia AS b ON fk_baia = idBaia
+JOIN uva AS u ON b.fk_uva = u.id;
 
--- SELECT COM CASE QUE IDENTIFICA SE ESTÁ EM ALERTA OU NÃO
-SELECT
-m.data_horario AS 'Data e Hora da Medição',
-m.umidade AS 'Umidade',
-s.idSensor AS 'Sensor',
-u.nome AS 'Tipo de uva',
-u.minUmidade AS 'Minimo de Umidade',
-u.maxUmidade AS 'Máximo de Umidade',
-CASE 
-	WHEN m.umidade > u.maxUmidade THEN 'Acima da umidade'
-    WHEN m.umidade < u.minUmidade THEN 'Abaixo da umidade'
-    ELSE 'Adequado'
-END AS 'Situação'
-FROM medida AS m 
-JOIN sensor AS s ON m.fk_sensor = s.idSensor
-JOIN uva AS u ON s.fk_tipoUva = u.id; 
+-- SELECT QUE MOSTRA TODAS AS MEDIDAS QUE ESTÃO EM ALERTA
+SELECT s.idSensor AS 'Sensor',
+data_horario AS 'Data e hora',
+umidade AS 'Umidade',
+CASE
+	WHEN nivel_alerta = 2 THEN 'Moderado'
+    WHEN nivel_alerta = 3 THEN 'Critico'
+END AS 'Nível de alerta'
+FROM medida
+JOIN sensor AS s ON fk_sensor = idSensor
+WHERE nivel_alerta > 1;
 
--- SELECT PARA VER MAIS INFORMAÇÕES DO ALERTA
-SELECT 
-    alerta.idAlerta,
-    alerta.tipo_alerta,
-    medida.umidade,
-    medida.data_horario,
-    sensor.area_instalada
-FROM alerta
-JOIN medida ON alerta.fk_medida = medida.idMedida
-JOIN sensor ON medida.fk_sensor = sensor.idSensor;
+-- SELECT DA ULTIMA MEDIDA REGISTRADA
+SELECT umidade AS 'Umidade Atual'
+ FROM medida
+ORDER BY umidade DESC
+LIMIT 1;
