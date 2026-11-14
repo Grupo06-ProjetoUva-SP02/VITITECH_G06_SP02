@@ -132,16 +132,44 @@
 
       finalizarAguardar();
       return false;
-    } else if (
-      // exercicio 3, validações
-      nomeVar.length < 2 || emailVar.includes('@') == false || emailVar.includes('.') == false || senhaVar <= 6 || confirmacaoSenhaVar != senhaVar || cpfVar.length != 11
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Um dos campos está invalido)";
+    } // Validação do nome
+    else if (nomeVar.length < 2) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "O nome deve possuir pelo menos 2 caracteres.";
+        finalizarAguardar();
+        return false;
+    }
 
-      finalizarAguardar();
-      return false;
+    // Validação do e-mail
+    else if (emailVar.includes('@') == false || emailVar.includes('.') == false) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "Informe um e-mail válido, contendo @ e um ponto(.) ";
+        finalizarAguardar();
+        return false;
+    }
+
+    // Validação da senha
+    else if (senhaVar.length < 6) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "A senha deve possuir pelo menos 6 caracteres.";
+        finalizarAguardar();
+        return false;
+    }
+
+    // Validação da confirmação da senha
+    else if (confirmacaoSenhaVar != senhaVar) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "A confirmação de senha não corresponde à senha informada.";
+        finalizarAguardar();
+        return false;
+    }
+
+    // Validação do CPF
+    else if (cpfVar.length != 11) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "O CPF deve possuir exatamente 11 números.";
+        finalizarAguardar();
+        return false;
     }
     else {
       setInterval(sumirMensagem, 5000);
@@ -150,7 +178,7 @@
     // Verificando se o código de ativação é de alguma empresa cadastrada
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
       if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
+        idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa
         console.log("Código de ativação válido.");
         break;
       } else {
@@ -214,7 +242,7 @@
             listaEmpresasCadastradas.push(empresa);
 
             console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+            console.log(listaEmpresasCadastradas[0].cod_ativacao)
           });
         });
       })

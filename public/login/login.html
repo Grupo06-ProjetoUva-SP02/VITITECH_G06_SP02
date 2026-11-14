@@ -61,42 +61,99 @@
 
 <script>
 
-    // definindo variáveis
 
 const login_fixo = 'cliente@gmail.com';
 const senha_fixa = '123456';
+
 let tentativas = 3;
 
-let lista_de_erros = [];
-let erro = 0;
+ function entrar() {
+        aguardar();
 
-function verificar() {
-    let login = ipt_email.value;
-    let senha = ipt_senha.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
 
-    // validação se possui tentaivas de erro
-
-    if (tentativas > 0) {
-        if (login === login_fixo && senha === senha_fixa) {
-            div_msg.innerHTML = `Login válido!`
-
-            window.location.href = '../visao_geral/visao_geral.html' // código utilizado para linkar páginas locais
-        } else {
-            lista_de_erros.push(erro)
-            tentativas--
-            div_msg.innerHTML = ``
-            for (erro = 0; erro < lista_de_erros.length; erro++) {
-
-                if (tentativas > 0) {
-                    div_msg.innerHTML = `E-mail ou senha incorretos! Tentativas restantes: ${tentativas}. Tente novamente.<br>`
-                } else {
-                    div_msg.innerHTML = `Você atingiu o limite de tentativas!`
-                }
-            }
+        if (tentativas <= 0) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = 'Acesso Bloqueado!'
+            setTimeout(sumirMensagem, 5000);
+            return false;
         }
-    } else {
-        div_msg.innerHTML = `Você atingiu o limite de tentativas!`
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok && tentativa > 0) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.SENHA_USUARIO = json.senha;
+                    sessionStorage.EMPRESA_USUARIO = json.fkEmpresa;
+
+                    //  cpf senha fkEmpresa
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else if (resposta.status == 403) { // email ou senha não estão coerentes com o que está no banco
+                tentativas --;
+
+                finalizarAguardar();
+                cardErro.style.display = "block";
+                    if (tentativas <= 0) {
+                        mensagem_erro.innerHTML = "Acesso bloqueado!"
+                    } else if (emailVar != email) {
+                        mensagem_erro.innerHTML = "Email Incorreto! Você tem: " + tentativas + " tentativa(s)";
+                    } else {
+                        mensagem_erro.innerHTML = "Senha Incorreta! Você tem: " + tentativas + " tentativa(s)";
+                    }
+            } else {
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
+
+function sumirMensagem() {
+    cardErro.style.display = "none"
 }
 
 </script>
