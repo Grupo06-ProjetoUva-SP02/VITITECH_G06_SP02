@@ -1,36 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_cadastro.css">
-    <link rel="icon" type="image/svg+xml" href="../../assets/img/logo.svg">
+    <link rel="stylesheet" href="./style_cadastro.css">
+    <link rel="icon" type="image/svg+xml" href="./assets/img/logo.svg">
+    <script src="./js/sessao.js"></script>
     <title>Cadastre-se</title>
 </head>
 
 <body onload="listar()">
     <header class="header">
         <div class="logo-container">
-            <img src="../../assets/img/logo.svg" alt="">
+            <img src="./assets/img/logo.svg" alt="">
             <h1 class="logo">VITITECH</h1>
         </div>
 
         <nav class="nav">
             <ul>
-                <li><a href="../home/home.html">Home</a></li>
-                <li><a href="../calculadora/calculadora.html">Calculadora</a></li>
-                <li><a href="../home/home.html">Quem Somos</a></li>
-                <li><a href="../cadastro/cadastro.html">Contato</a></li>
+                <li><a href="./home.html">Home</a></li>
+                <li><a href="./calculadora.html">Calculadora</a></li>
+                <li><a href="./home.html">Quem Somos</a></li>
+                <li><a href="./cadastro.html">Contato</a></li>
                 <div class="login">
-                    <li><a href="../login/login.html">Login</a></li>
-                    <img src="../../assets/img/user.svg" alt="Imagem do botão para logar">
+                    <li><a href="./login.html">Login</a></li>
+                    <img src="./assets/img/user.svg" alt="Imagem do botão para logar">
                 </div>
             </ul>
         </nav>
     </header>
 
     <div class="banner">
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro" style="display: none;">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
+
         <div class="formulario_cadastro">
             <div class="title">
                 <span>Cadastre-se</span>
@@ -42,7 +49,7 @@
             </div>
 
             <div class="container_inputs">
-                <label for="ipt_telefone">Nome:</label>
+                <label for="ipt_nome">Nome:</label>
                 <input type="text" placeholder="Insira seu nome" id="ipt_nome">
             </div>
 
@@ -53,7 +60,6 @@
 
             <div id="emailValidacao"></div>
 
-
             <div class="container_inputs">
                 <label for="ipt_CPF">CPF:</label>
                 <input type="text" placeholder="Insira seu CPF" id="ipt_CPF">
@@ -62,10 +68,9 @@
             <div class="container_inputs">
                 <label for="ipt_senha">Senha:</label>
                 <input type="password" id="ipt_senha" placeholder="Insira sua senha">
-                <div id="divSenha">A senha deve ter mais que 8 caracteres, uma letra maiúscula e uma mínuscula</div>
+                <div id="divSenha">A senha deve ter mais que 8 caracteres, uma letra maiúscula e uma minúscula</div>
                 <br>
             </div>
-
 
             <div class="container_inputs">
                 <label for="ipt_confirmarSenha">Confirmar senha:</label>
@@ -75,35 +80,26 @@
             <button onclick="cadastrar()">Cadastrar</button>
             <div class="link_cadastro">
                 Já possui uma conta?
-                <a href="../login/login.html">Clique aqui</a>
+                <a href="./login.html">Clique aqui</a>
             </div>
         </div>
     </div>
-
-    </div>
 </body>
 
+</html>
 
 <script>
-
     let listaEmpresasCadastradas = [];
 
-
     function cadastrar() {
-        // aguardar();
-
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-
         var nomeVar = ipt_nome.value;
         var emailVar = ipt_email.value;
         var cpfVar = ipt_CPF.value;
         var senhaVar = ipt_senha.value;
-        var confirmacaoSenhaVar = ipt_senha.value;
+        var confirmacaoSenhaVar = ipt_confirmarSenha.value;
         var codigoVar = ipt_codigo.value;
-        var idEmpresaVincular
+        var idEmpresaVincular;
 
-        // Verificando se há algum campo em branco
         if (
             nomeVar == "" ||
             emailVar == "" ||
@@ -113,55 +109,51 @@
             codigoVar == ""
         ) {
             cardErro.style.display = "block";
-            mensagem_erro.innerHTML =
-                "(Mensagem de erro para todos os campos em branco)";
-
-            finalizarAguardar();
+            mensagem_erro.innerHTML = "Preencha todos os campos em branco!";
+            setTimeout(sumirMensagem, 5000);
             return false;
         } else if (
-            // exercicio 3, validações
-            nomeVar.length < 2 || emailVar.includes('@') == false || emailVar.includes('.') == false || senhaVar <= 6 || confirmacaoSenhaVar != senhaVar || cpfVar.length != 11
+            nomeVar.length < 2 ||
+            !emailVar.includes('@') ||
+            !emailVar.includes('.') ||
+            senhaVar.length <= 8 ||
+            confirmacaoSenhaVar != senhaVar ||
+            cpfVar.length != 11
         ) {
             cardErro.style.display = "block";
-            mensagem_erro.innerHTML =
-                "(Um dos campos está invalido)";
-
-            finalizarAguardar();
+            mensagem_erro.innerHTML = "Um dos campos está inválido! Verifique os requisitos.";
+            setTimeout(sumirMensagem, 5000);
             return false;
         }
-        else {
-            setInterval(sumirMensagem, 5000);
-        }
+
         // Verificando se o código de ativação é de alguma empresa cadastrada
         for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
             if (listaEmpresasCadastradas[i].cod_ativacao == codigoVar) {
-                idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa
+                idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa;
                 console.log("Código de ativação válido.");
-
                 break;
-            } else {
-                cardErro.style.display = "block";
-                mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-
-                finalizarAguardar();
             }
         }
 
-        // Enviando o valor da nova input
+        // Se saiu do loop sem encontrar o código, exibe erro e para o cadastro
+        if (!idEmpresaVincular) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "Código de ativação inválido!";
+            setTimeout(sumirMensagem, 5000);
+            return false;
+        }
+
         fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
                 cpfServer: cpfVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
                 idEmpresaVincularServer: idEmpresaVincular
-                
             }),
         })
             .then(function (resposta) {
@@ -174,10 +166,7 @@
 
                     setTimeout(() => {
                         window.location = "./login.html";
-                    }, "2000");
-
-                    limparFormulario();
-                    finalizarAguardar();
+                    }, 2000);
                 } else {
                     throw "Houve um erro ao tentar realizar o cadastro!";
                 }
@@ -189,9 +178,7 @@
         return false;
     }
 
-    // Listando empresas cadastradas 
     function listar() {
-        
         fetch("/empresas/listar", {
             method: "GET",
         })
@@ -199,9 +186,6 @@
                 resposta.json().then((empresas) => {
                     empresas.forEach((empresa) => {
                         listaEmpresasCadastradas.push(empresa);
-
-                        console.log("listaEmpresasCadastradas")
-                        console.log(listaEmpresasCadastradas[0].cod_ativacao)
                     });
                 });
             })
@@ -213,5 +197,4 @@
     function sumirMensagem() {
         cardErro.style.display = "none";
     }
-
 </script>
