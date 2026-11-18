@@ -155,17 +155,23 @@ SELECT * FROM medida;
 TRUNCATE medida;
 
 -- SELECT DA MEDIDA COM O MINIMO, MAXIMO E TIPO DE UVA
-SELECT
-m.umidade AS 'Umidade',
-s.idSensor AS 'Sensor',
-b.idBaia AS 'Baia',
-u.nome AS 'Tipo de uva',
-u.minUmidade AS 'Umidade minima',
-maxUmidade AS 'Umidade Máxima'
-FROM medida AS m
-JOIN sensor AS s ON m.fk_sensor = s.idSensor
-JOIN baia AS b ON fk_baia = idBaia
-JOIN uva AS u ON b.fk_uva = u.id;
+-- MAXIMO E MINIMO POR DIA
+SELECT 
+    CASE WEEKDAY(data_horario)
+        WHEN 0 THEN 'Segunda-feira'
+        WHEN 1 THEN 'Terça-feira'
+        WHEN 2 THEN 'Quarta-feira'
+        WHEN 3 THEN 'Quinta-feira'
+        WHEN 4 THEN 'Sexta-feira'
+        WHEN 5 THEN 'Sábado'
+        WHEN 6 THEN 'Domingo'
+    END AS dia_semana,
+    MIN(umidade) AS umidade_minima,
+    MAX(umidade) AS umidade_maxima
+FROM medida
+WHERE data_horario >= CURDATE() - INTERVAL 7 DAY
+GROUP BY WEEKDAY(data_horario), dia_semana
+ORDER BY WEEKDAY(data_horario);
 
 -- SELECT QUE MOSTRA TODAS AS MEDIDAS QUE ESTÃO EM ALERTA
 SELECT s.idSensor AS 'Sensor',
@@ -184,3 +190,14 @@ SELECT umidade AS 'Umidade Atual'
  FROM medida
 ORDER BY umidade DESC
 LIMIT 1;
+
+select * from medida;
+DESC medida;
+-- INSERT MEDIDA
+INSERT INTO propriedade (umidade, nivel_alerta, fk_sensor) VALUES 
+(45.5, 1, 1),
+(62.0, 1, 2),
+(28.3, 2, 1),
+(15.0, 3, 3),
+(85.7, 3, 2),
+(50.2, 1, 4);

@@ -150,6 +150,108 @@
 </html>
 
 <script>
+
+    window.addEventListener('load', fet);
+
+
+ function commonOptions() {
+        return {
+            indexAxis: "x",
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0
+                    }
+                }
+            }
+        };
+    }
+
+    function createChartBar(id, dados, opcoes) {
+        var canvas = document.getElementById(id);
+
+        return new Chart(canvas, {
+            type: "bar",
+            data: dados,
+            options: opcoes
+        });
+    }
+
+
+    var graficoLinhas = null;
+
+    var linhasData = {
+        labels: [],
+        datasets: [
+            {
+                label: "Umidade máxima",
+                data: [],
+                backgroundColor: '#204fc1'
+            },
+            {
+                label: "Umidade mínima",
+                data: [],
+                backgroundColor: '#8B0000'
+            }]
+    };
+
+    graficoLinhas = createChartBar(
+            "mediaPeriodo",
+            linhasData,
+            commonOptions()
+    );
+
+
+  function fet() {
+    fetch(`/dashboard/incidenciaMaiorMenor`)
+      .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+
+      .then(function (dados) {
+        let umidadeMax = [];
+        let umidadeMin = [];
+        let diaSemana = [];
+
+        console.log("oi", dados);
+        console.log("oi", dados.length);
+
+        for (let i = 0; i < dados.length; i++) {
+            umidadeMax.push(dados[i].umidade_maxima);
+            umidadeMin.push(dados[i].umidade_minima);
+            diaSemana.push(dados[i].dia_semana);
+        }
+
+        graficoLinhas.data.labels = diaSemana
+        graficoLinhas.data.datasets[0].data = umidadeMax
+        graficoLinhas.data.datasets[1].data = umidadeMin
+
+        graficoLinhas.update()
+
+
+      })
+
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`,
+        );
+      });
+  }
+
+
+
     const umidadePeriodo = document.getElementById('umidadePeriodo');
     const mediaPeriodo = document.getElementById('mediaPeriodo');
 
