@@ -44,7 +44,7 @@
 
         </div>
 
-        <div class="header right">
+        <!-- <div class="header right">
 
             <div class="title">
                 <h2 style="font-weight: 600; font-size: 18px;">Baias</h2>
@@ -70,18 +70,19 @@
                 </div>
                 <h3 style="font-weight: 600;">Baia 03 <br> Merlot</h3>
             </div>
-        </div>
+        </div> -->
 
-        <div class="botaoVoltar">
+        <div class="header-right">
+            
+            <div class="containerLegenda">
+            <div class="botaoVoltar">
             <a style="display: flex;align-items: center; gap: 10px; text-decoration: none; color: black;"
-                href="../visao_geral/visao_geral.html">
+                href="visao_geral.html">
                 <img src="../../assets/img/backButton.svg" alt="">
                 <p style="font-size: 14px;font-weight: 600;">Voltar</p>
             </a>
-        </div>
+            </div>
 
-        <div class="containerLegenda">
-            
             <div class="legenda-umidade" role="group" aria-label="Legenda da umidade">
                 <p><b>Faixas de Umidade:</b></p>
                 <span class="legenda-umidade__item">
@@ -105,28 +106,30 @@
 
         </div>
 
-        <div class="kpi1">
-            <div class="container">
-                <img src="../../assets/img/png.png" alt="">
 
+        <div class="kpis">
+            <div class="kpi estadoKpi">
+            <div class="imgKpi">
+                <img src="assets/img/atencao.png" alt="Ícone de umidade">
             </div>
             <h3 style="color: #e6dee8;" class="umidadeKpi">Umidade Atual</h3>
             <h1>21%</h1>
             <h3 class="text">Abaixo da faixa ideal</h3>
-        </div>
+            </div>
 
-
-        <div class="kpi3">
-            <div class="container1">
-                <img src="../../assets/img/alerta_kpi.png" alt="">
+            <div class="kpi">
+            <div class="imgKpi">
+                <img src="assets/img/alerta_kpi.png" alt="Ícone de alerta">
             </div>
             <div class="container2">
-                <p>Alertas de hoje:</p>
+                <p>Alertas de hoje</p>
                 <h1>8 alertas</h1>
-                <p style="color: rgb(98, 98, 98);" class="text">3+ que semana passada.</p>
+                <p style="color: rgb(98, 98, 98);" class="text">+3 que semana passada</p>
+            </div>
             </div>
         </div>
-    </div>
+
+    
 
     <div class="title_grafico">
         <h2>Umidade do Solo em Tempo Real</h2>
@@ -144,12 +147,117 @@
     <div id="grafico2">
         <canvas id="mediaPeriodo"></canvas>
     </div>
+        </div>
+
+</div>
 
 </body>
 
 </html>
 
 <script>
+
+    window.addEventListener('load', fet);
+
+
+ function commonOptions() {
+        return {
+            indexAxis: "x",
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0
+                    }
+                }
+            }
+        };
+    }
+
+    function createChartBar(id, dados, opcoes) {
+        var canvas = document.getElementById(id);
+
+        return new Chart(canvas, {
+            type: "bar",
+            data: dados,
+            options: opcoes
+        });
+    }
+
+
+    var graficoLinhas = null;
+
+    var linhasData = {
+        labels: [],
+        datasets: [
+            {
+                label: "Umidade máxima",
+                data: [],
+                backgroundColor: '#204fc1'
+            },
+            {
+                label: "Umidade mínima",
+                data: [],
+                backgroundColor: '#8B0000'
+            }]
+    };
+
+    graficoLinhas = createChartBar(
+            "mediaPeriodo",
+            linhasData,
+            commonOptions()
+    );
+
+
+  function fet() {
+    fetch(`/dashboard/incidenciaMaiorMenor`)
+      .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+
+      .then(function (dados) {
+        let umidadeMax = [];
+        let umidadeMin = [];
+        let diaSemana = [];
+
+        console.log("oi", dados);
+        console.log("oi", dados.length);
+
+        for (let i = 0; i < dados.length; i++) {
+            umidadeMax.push(dados[i].umidade_maxima);
+            umidadeMin.push(dados[i].umidade_minima);
+            diaSemana.push(dados[i].dia_semana);
+        }
+
+        graficoLinhas.data.labels = diaSemana
+        graficoLinhas.data.datasets[0].data = umidadeMax
+        graficoLinhas.data.datasets[1].data = umidadeMin
+
+        graficoLinhas.update()
+
+
+      })
+
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`,
+        );
+      });
+  }
+
+
+
     const umidadePeriodo = document.getElementById('umidadePeriodo');
     const mediaPeriodo = document.getElementById('mediaPeriodo');
 

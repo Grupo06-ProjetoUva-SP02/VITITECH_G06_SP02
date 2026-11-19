@@ -91,7 +91,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/img/banner_login.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/banner_login.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -190,4 +190,31 @@ button:hover {
 
 .link_cadastro a:hover {
     color: var(--cor-principal);
+}
+
+#div_erros_login {
+  display: none
+}
+
+/* FORMULARIO */
+
+.alerta_erro {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.card_erro {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #ffe5e5;
+    color: #c62828;
+    text-align: center;
+}
+
+.card_erro #mensagem_erro{
+  font-weight: 500;
+  font-size: 16px;
 }
