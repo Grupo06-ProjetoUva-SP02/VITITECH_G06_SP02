@@ -11,14 +11,9 @@ body {
 
 /* menu esquerdo*/
 .header-left {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 212px;
-    height: 100vh;
+    min-height: 100%;
     padding: 28px 16px 20px 16px;
     background-color: #964f9c;
-
     display: flex;
     flex-direction: column;
 }
@@ -49,6 +44,13 @@ body {
     width: 36px;
     height: 36px;
     margin-right: 0;
+}
+
+.header-right{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: #22a65a;
 }
 
 .btn-nav {
@@ -156,55 +158,39 @@ body {
 
 /* kpi*/
 .janela {
-    margin-left: 240px;
-    margin-right: 258px;
-    padding-top: 75px;
     display: flex;
     gap: 29px;
-    width: 82%;
+    width: 100%;
+    background-color: #ab6fb1;
+
 }
 
-.kpi1,
-.kpi2,
-.kpi3 {
-    position: relative; 
-    flex: 1;
-    height: 120px;
-    padding: 14px 24px;
-    text-align: left;
-    border-radius: 18px;
-}
-
-.kpi3{
+.kpis{
+    background-color: pink;
     display: flex;
-    background-color: #ead7ee;
-    border: 1px solid;
-    border-color: #8d4899;
 }
 
-.kpi3 .container1 img {
+.kpi{
+    width: 100%;
+    border: 2px solid purple;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #edbbf1;
+}
+
+.kpi.estadoKpi{
+    display: flex;
+    flex-direction: column;
+    background-color: #f32c3d;
+    border: 1px solid #8d4899;
+    color: #e6dee8;
+}
+
+.imgKpi {
     display: flex;
     height: 7vh;
 }
 
-.kpi3 .container2 {
-    display: flex;
-    flex-direction: column;
-}
-
-.kpi3 .container1 {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-}
-
-.kpi3 .container2 h1 {
-    display: flex;
-    color:#5e1f6b;
-    font-size: 150%;
-    padding: 7px;
-
-}
 
 .kpi3 .container2 p,
 .kpi1 .text,
@@ -343,34 +329,15 @@ body {
     font-weight: normal;
 }
 
-
-.botaoVoltar {
-    position: absolute;
-    top: 20px;
-
-    z-index: 10;
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 .botaoVoltar img {
     width: 24px;
 }
 
-
-
-
-
-
 .containerLegenda {
-    position: absolute;
-    top: 20px;
-    right: 10px;
     display: flex;
+    justify-content: space-between;
+    background-color: blue;
 }
-
 
 .legenda-umidade {
     display: flex;

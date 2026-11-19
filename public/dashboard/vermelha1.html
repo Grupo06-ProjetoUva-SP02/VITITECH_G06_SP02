@@ -72,17 +72,17 @@
             </div>
         </div> -->
 
-        <div class="botaoVoltar">
+        <div class="header-right">
+            
+            <div class="containerLegenda">
+            <div class="botaoVoltar">
             <a style="display: flex;align-items: center; gap: 10px; text-decoration: none; color: black;"
                 href="../visao_geral/visao_geral.html">
                 <img src="../../assets/img/backButton.svg" alt="">
                 <p style="font-size: 14px;font-weight: 600;">Voltar</p>
             </a>
-        </div>
+            </div>
 
-
-        <div class="containerLegenda">
-            
             <div class="legenda-umidade" role="group" aria-label="Legenda da umidade">
                 <p><b>Faixas de Umidade:</b></p>
                 <span class="legenda-umidade__item">
@@ -107,28 +107,29 @@
         </div>
 
 
-        <div class="kpi1">
-            <div class="container">
-                <img src="../../assets/img/png.png" alt="">
-
+        <div class="kpis">
+            <div class="kpi estadoKpi">
+            <div class="imgKpi">
+                <img src="assets/img/atencao.png" alt="Ícone de umidade">
             </div>
             <h3 style="color: #e6dee8;" class="umidadeKpi">Umidade Atual</h3>
             <h1>21%</h1>
             <h3 class="text">Abaixo da faixa ideal</h3>
-        </div>
+            </div>
 
-
-        <div class="kpi3">
-            <div class="container1">
-                <img src="../../assets/img/alerta_kpi.png" alt="">
+            <div class="kpi">
+            <div class="imgKpi">
+                <img src="assets/img/alerta_kpi.png" alt="Ícone de alerta">
             </div>
             <div class="container2">
-                <p>Alertas de hoje:</p>
+                <p>Alertas de hoje</p>
                 <h1>8 alertas</h1>
-                <p style="color: rgb(98, 98, 98);" class="text">3+ que semana passada.</p>
+                <p style="color: rgb(98, 98, 98);" class="text">+3 que semana passada</p>
+            </div>
             </div>
         </div>
-    </div>
+
+    
 
     <div class="title_grafico">
         <h2>Umidade do Solo em Tempo Real</h2>
@@ -146,7 +147,9 @@
     <div id="grafico2">
         <canvas id="mediaPeriodo"></canvas>
     </div>
+        </div>
 
+</div>
 
 </body>
 
