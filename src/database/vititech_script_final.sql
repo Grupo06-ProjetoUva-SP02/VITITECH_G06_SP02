@@ -173,6 +173,7 @@ WHERE data_horario >= CURDATE() - INTERVAL 7 DAY
 GROUP BY WEEKDAY(data_horario), dia_semana
 ORDER BY WEEKDAY(data_horario);
 
+SELECT * from medida;
 -- SELECT QUE MOSTRA TODAS AS MEDIDAS QUE ESTÃO EM ALERTA
 SELECT s.idSensor AS 'Sensor',
 data_horario AS 'Data e hora',
@@ -194,10 +195,7 @@ LIMIT 1;
 select * from medida;
 DESC medida;
 -- INSERT MEDIDA
-INSERT INTO propriedade (umidade, nivel_alerta, fk_sensor) VALUES 
-(45.5, 1, 1),
-(62.0, 1, 2),
-(28.3, 2, 1),
-(15.0, 3, 3),
-(85.7, 3, 2),
-(50.2, 1, 4);
+INSERT INTO medida (umidade, data_horario, nivel_alerta, fk_sensor) VALUES 
+(45.5, '2026-11-16 18:20:01', 1, 13),
+(62.0, '2026-11-15 18:20:01', 1, 17),
+(28.3, '2026-11-12 18:20:01', 2, 16);
