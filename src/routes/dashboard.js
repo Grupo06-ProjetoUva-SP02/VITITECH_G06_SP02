@@ -9,5 +9,8 @@ router.get("/incidenciaMaiorMenor", function (req, res) {
     dashboardController.incidenciaMaiorMenor(req, res);
 })
 
+router.get("/kpiAlerta/:idEmpresaVincular", function (req, res) {
+    dashboardController.KpiAlerta(req, res);
+})
 
 module.exports = router;

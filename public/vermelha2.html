@@ -25,58 +25,6 @@
                 <h1>Vititech</h1>
 
             </div>
-            <!-- 
-            <div class="btn-nav">
-                <div class="icon">
-                    <img src="../../assets/img/visao_geral.svg" alt="">
-                </div>
-                <h3>Visão Geral</h3>
-            </div>
-
-            <div class="btn-nav-white">
-                <div class="icon">
-                    <img src="../../assets/img/baias.svg" alt="">
-                </div>
-                <a href="#">
-                    <h3>Baias</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <div class="icon">
-                    <img src="../../assets/img/alerta.svg" alt="">
-                </div>
-                <a href="#">
-                    <h3>Alertas</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <div class="icon">
-                    <img src="../../assets/img/relatorio.svg" alt="">
-                </div>
-                <a href="#">
-                    <h3>Relatórios</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <div class="icon">
-                    <img src="../../assets/img/configuracao.svg" alt="">
-                </div>
-                <a href="#">
-                    <h3>Configurações</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <div class="icon">
-                    <img src="../../assets/img/user.svg" alt="">
-                </div>
-                <a href="#">
-                    <h3>Usuário</h3>
-                </a>
-            </div> -->
 
             <nav class="btn-nav">
                 <a href="visao_geral.html" class="ativo">
@@ -87,7 +35,7 @@
                 <a href="/src/relatorio/relatorio.html">
                     <img src="../../assets/img/relatorio.svg" alt="">Relatórios
                 </a>
-                
+
                 <div class="btn-logout" onclick="limparSessao()">
                     <a href="../login/login.html" class="icon">
                         <img src="../../assets/img/icone_sair.svg" alt=""> Sair
@@ -96,45 +44,47 @@
 
         </div>
 
-        <div class="header right">
+        <!-- <div class="header right">
 
             <div class="title">
-                <h2>Baias</h2>
+                <h2 style="font-weight: 600; font-size: 18px;">Baias</h2>
             </div>
 
             <div style="background-color: #c55dd7b1;border: 1px solid #8d4899;" class="card">
                 <div style="background-color: #8d4899;" class="container">
                     <h3 style="color: #fffdff;">01</h3>
                 </div>
-                <h3 style="font-weight: 600;">Baia 01 | 21%</h3>
+                <h3 style="font-weight: 600;">Baia 01 <br>Carbenet Suavignon</h3>
             </div>
 
             <div class="card">
                 <div class="container">
                     <h3>02</h3>
                 </div>
-                <h3>Baia 02 | 21%</h3>
+                <h3 style="font-weight: 600;">Baia 02 <br> Malbec</h3>
             </div>
 
             <div class="card">
                 <div class="container">
                     <h3>03</h3>
                 </div>
-                <h3>Baia 03 | 21%</h3>
+                <h3 style="font-weight: 600;">Baia 03 <br> Merlot</h3>
             </div>
-        </div>
+        </div> -->
 
-        <div class="botaoVoltar">
+        <div class="header-right">
+            
+            <div class="containerLegenda">
+            <div class="botaoVoltar">
             <a style="display: flex;align-items: center; gap: 10px; text-decoration: none; color: black;"
-                href="../visao_geral/visao_geral.html">
+                href="visao_geral.html">
                 <img src="../../assets/img/backButton.svg" alt="">
                 <p style="font-size: 14px;font-weight: 600;">Voltar</p>
             </a>
-        </div>
-
-        <div class="containerLegenda">
+            </div>
 
             <div class="legenda-umidade" role="group" aria-label="Legenda da umidade">
+                <p><b>Faixas de Umidade:</b></p>
                 <span class="legenda-umidade__item">
                     <span class="legenda-umidade__cor legenda-umidade__cor--bom" aria-hidden="true"></span>
                     <strong>Bom</strong>
@@ -156,28 +106,30 @@
 
         </div>
 
-        <div class="kpi1">
-            <div class="container">
-                <img src="../../assets/img/png.png" alt="">
 
+        <div class="kpis">
+            <div class="kpi estadoKpi">
+            <div class="imgKpi">
+                <img src="assets/img/atencao.png" alt="Ícone de umidade">
             </div>
             <h3 style="color: #e6dee8;" class="umidadeKpi">Umidade Atual</h3>
             <h1>21%</h1>
             <h3 class="text">Abaixo da faixa ideal</h3>
-        </div>
+            </div>
 
-
-        <div class="kpi3">
-            <div class="container1">
-                <img src="../../assets/img/alerta_kpi.png" alt="">
+            <div class="kpi">
+            <div class="imgKpi">
+                <img src="assets/img/alerta_kpi.png" alt="Ícone de alerta">
             </div>
             <div class="container2">
-                <p>Alertas de hoje:</p>
-                <h1>8 alertas</h1>
-                <p style="color: rgb(98, 98, 98);" class="text">3+ que semana passada.</p>
+                <p>Alertas de hoje</p>
+                <h1 id="kpi_alerta"></h1>
+                <p style="color: rgb(98, 98, 98);" class="text" id="comparacaoAlerta"></p>
+            </div>
             </div>
         </div>
-    </div>
+
+    
 
     <div class="title_grafico">
         <h2>Umidade do Solo em Tempo Real</h2>
@@ -189,49 +141,241 @@
 
 
     <div class="title_grafico">
-        <h2>Horários semanais de maior e menor incidência de umidade do solo</h2>
+        <h2>Incidência de maior e menor umidade do solo</h2>
     </div>
 
     <div id="grafico2">
         <canvas id="mediaPeriodo"></canvas>
     </div>
+        </div>
+
+</div>
 
 </body>
 
 </html>
 
 <script>
+
+    window.addEventListener('load', fet);
+
+    var totalAlertasHoje = document.getElementById(`kpi_alerta`);
+    var totalAlertasOntem = document.getElementById(`comparacaoAlerta`)
+    var comparacaoAlertaOntem = document.getElementById(`comparacaoAlerta`);
+    
+    function kpi_alerta(idEmpresaVincular) {
+        fetch(`/dashboard/KpiAlerta/${idEmpresaVincular}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta[0])}`);
+
+                    totalAlertasHoje.textContent = resposta[0].alertas_hoje;
+
+                    if(resposta[0].alertas_ontem == 0) {
+                        comparacaoAlertaOntem.textContent = `Ontem não teve nenhum alerta`;
+                    } else if(resposta[0].diferenca_alertas > 0) {
+
+                        comparacaoAlertaOntem.textContent = ` +${resposta[0].diferenca_alertas} comparado ao dia anterior`;
+                    } else {
+
+                        comparacaoAlertaOntem.textContent = `${resposta[0].diferenca_alertas} comparado ao dia anterior`;
+                    }
+
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ Kpi: ${error.message}`);
+            });
+    } kpi_alerta(sessionStorage.getItem('ID_USUARIO'))
+
+ function commonOptions() {
+        return {
+            indexAxis: "x",
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0
+                    }
+                }
+            }
+        };
+    }
+
+    function createChartBar(id, dados, opcoes) {
+        var canvas = document.getElementById(id);
+
+        return new Chart(canvas, {
+            type: "bar",
+            data: dados,
+            options: opcoes
+        });
+    }
+
+
+    var graficoLinhas = null;
+
+    var linhasData = {
+        labels: [],
+        datasets: [
+            {
+                label: "Umidade máxima",
+                data: [],
+                backgroundColor: '#204fc1'
+            },
+            {
+                label: "Umidade mínima",
+                data: [],
+                backgroundColor: '#8B0000'
+            }]
+    };
+
+    graficoLinhas = createChartBar(
+            "mediaPeriodo",
+            linhasData,
+            commonOptions()
+    );
+
+
+  function fet() {
+    fetch(`/dashboard/incidenciaMaiorMenor`)
+      .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+
+      .then(function (dados) {
+        let umidadeMax = [];
+        let umidadeMin = [];
+        let diaSemana = [];
+
+        console.log("oi", dados);
+        console.log("oi", dados.length);
+
+        for (let i = 0; i < dados.length; i++) {
+            umidadeMax.push(dados[i].umidade_maxima);
+            umidadeMin.push(dados[i].umidade_minima);
+            diaSemana.push(dados[i].dia_semana);
+        }
+
+        graficoLinhas.data.labels = diaSemana
+        graficoLinhas.data.datasets[0].data = umidadeMax
+        graficoLinhas.data.datasets[1].data = umidadeMin
+
+        graficoLinhas.update()
+
+
+      })
+
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`,
+        );
+      });
+  }
+
+
+
     const umidadePeriodo = document.getElementById('umidadePeriodo');
     const mediaPeriodo = document.getElementById('mediaPeriodo');
 
+    // Definição dos limites dos graficos.
+    const limiteInferior = 40;
+    const limiteSuperior = 70;
+
     new Chart(umidadePeriodo, {
         type: 'line',
+
         data: {
             labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
             datasets: [{
                 label: 'Umidade do solo por período',
-                data: [50, 60, 70, 80, 50, 70],
+                data: [50, 60, 70, 80, 50, 21],
                 borderWidth: 3,
                 borderColor: '#8d4899',
-                backgroundColor: '#8d4899',
+                backgroundColor: '#8d4899'
             }]
         },
+
         options: {
+            responsive: true,
             maintainAspectRatio: false,
+
             scales: {
                 y: {
-                    beginAtZero: true
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 10,
+                        callback: (valor) => `${valor}%`
+                    }
                 }
             }
-        }
-    });
+        },
 
+        plugins: [{
+            id: 'linhas-referencia',
+
+            beforeDatasetsDraw(chart) {
+                const { ctx, chartArea, scales } = chart;
+                if (!chartArea) return;
+
+                const limites = [
+                    { valor: limiteInferior, texto: 'Limite inferior' },
+                    { valor: limiteSuperior, texto: 'Limite superior' }
+                ];
+
+                ctx.save();
+                ctx.strokeStyle = '#ef4444';
+                ctx.fillStyle = '#b91c1c';
+                ctx.lineWidth = 2;
+                ctx.font = '600 12px Arial';
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'bottom';
+
+                limites.forEach(({ valor, texto }) => {
+                    if (valor < scales.y.min || valor > scales.y.max) return;
+
+                    const posicaoY = scales.y.getPixelForValue(valor);
+
+                    // Aqui é onde o chartJS desenha o gráfico.
+                    ctx.beginPath();
+                    ctx.moveTo(chartArea.left, posicaoY);
+                    ctx.lineTo(chartArea.right, posicaoY);
+                    ctx.stroke();
+
+                    // Identifica aonde é o limite.
+                    ctx.fillText(
+                        `${texto}: ${valor}%`,
+                        chartArea.right - 8,
+                        posicaoY - 6
+                    );
+                });
+
+                ctx.restore();
+            }
+        }]
+    });
     new Chart(mediaPeriodo, {
         type: 'bar',
         data: {
             labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira'],
 
-            // define os dados do gráfico de barras
+            // aqui é onde define os dados do gráfico de barras
             datasets: [{
                 label: 'Umidade mínima',
                 data: [50, 60, 70, 80, 60, 70],

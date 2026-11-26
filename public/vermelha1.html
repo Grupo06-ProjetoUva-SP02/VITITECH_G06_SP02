@@ -125,8 +125,8 @@
             </div>
             <div class="container2">
                 <p>Alertas de hoje</p>
-                <h1>8 alertas</h1>
-                <p style="color: rgb(98, 98, 98);" class="text">+3 que semana passada</p>
+                <h1 id="kpi_alerta"></h1>
+                <p style="color: rgb(98, 98, 98);" class="text" id="comparacaoAlerta"></p>
             </div>
             </div>
         </div>
@@ -164,6 +164,35 @@
 
     window.addEventListener('load', fet);
 
+    var totalAlertasHoje = document.getElementById(`kpi_alerta`);
+    var comparacaoAlertaOntem = document.getElementById(`comparacaoAlerta`);
+    
+    function kpi_alerta(idEmpresaVincular) {
+        fetch(`/dashboard/KpiAlerta/${idEmpresaVincular}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    totalAlertasHoje.textContent = resposta[0].alertas_hoje;
+
+                    if(resposta[0].diferenca_alertas > 0) {
+
+                        comparacaoAlertaOntem.textContent = ` +${resposta[0].diferenca_alertas} comparado ao dia anterior`;
+                    } else {
+
+                        comparacaoAlertaOntem.textContent = `${resposta[0].diferenca_alertas} comparado ao dia anterior`;
+                    }
+
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ Kpi: ${error.message}`);
+            });
+    } kpi_alerta(sessionStorage.getItem('ID_USUARIO'))
 
  function commonOptions() {
         return {
