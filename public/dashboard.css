@@ -49,8 +49,8 @@ body {
 .header-right{
     display: flex;
     flex-direction: column;
-    width: 80%;
-    background-color: #22a65a;
+    width: 90%;
+    margin-left: 40px;
 }
 
 .btn-nav {
@@ -91,6 +91,73 @@ body {
 .btn-logout h3 {
     font-size: 14px;
     font-weight: normal;
+}
+
+/* MENU HAMBURGER */
+/*botão icon*/
+#btn-menu { 
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 100;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+} 
+
+/*aba menu*/
+#menu-lateral {
+    position: fixed;
+    top: 0; /* posicionando */
+    left: 0;
+    height: 100vh;
+    width: 60px;
+    overflow: hidden;
+    background-color: #964f9c;
+    transition: width 0.3s ease; /* animação */
+    padding-top: 70px;
+    z-index: 50;
+}
+
+#menu-lateral.aberto {
+    width: 250px; 
+}
+
+#menu-lateral a {
+    display: block;
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    white-space: nowrap; /* sumir com o texto */
+}
+
+#menu-lateral .title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+#menu-lateral .title h1 {
+    font-size: 20px;
+    color: white;
+}
+
+#menu-lateral .title img {
+    width: 36px;
+    height: 36px;
+}
+
+#menu-lateral a img {
+    width: 24px;
+    height: 24px;
+}
+
+#menu-lateral a:hover,
+#menu-lateral a.ativo {
+    background-color: #ab6fb1;
 }
 
 /* baias*/
@@ -161,27 +228,26 @@ body {
     display: flex;
     gap: 29px;
     width: 100%;
-    background-color: #ab6fb1;
-
 }
 
 .kpis{
-    background-color: pink;
     display: flex;
+    margin-bottom: 10px;
+    gap: 20px;
 }
 
 .kpi{
     width: 100%;
-    border: 2px solid purple;
+    border: 2px solid #d5baeb;
     border-radius: 15px;
     padding: 10px;
-    background-color: #edbbf1;
+    background-color: #f7ecfd;
 }
 
 .kpi.estadoKpi{
     display: flex;
     flex-direction: column;
-    background-color: #f32c3d;
+    background-color: #5e1f6b;
     border: 1px solid #8d4899;
     color: #e6dee8;
 }
@@ -191,123 +257,11 @@ body {
     height: 7vh;
 }
 
-
-.kpi3 .container2 p,
-.kpi1 .text,
-.umidadeKpi {
-    display: flex;
-    color:#5e1f6b ;
-    margin-bottom: 3px;
-    font-size: 100%!important;
-
-}
-
-.kpi3 .container2 .text,
-.kpi1 .text {
-    display: flex;
-    color: #e6dee8;
-    margin-top: 5px;
-}
-
-
-.kpi1 h3,
-.kpi2 h3 {
-    font-size: 14px;
-    font-weight: normal;
-}
-
-.kpi1 h1,
-.kpi2 h1 {
-    font-size: 24px;
-    margin: 4px 0 0 6px;
-}
-
-
-.kpi1 {
-    background-color: #f32c3d;
-    border: 1px solid #8d4899;
-    color: #e6dee8;
-}
-
-
-.kpi2 {
-    background-color: #f32c3d;
-    border: 1px solid #8d4899;
-    color: #e6dee8;
-}
-
-.kpi1,
-.kpi3 {
-    display: flex;
-    position: relative;
-    padding-left: 78px;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.kpi3 {    
-    display: flex;
-    position: relative;
-    padding-left: 20px!important;
-    flex-direction: row;
-    justify-content: flex-start;
-}
-
-.kpi1 .container,
-.kpi2 .container {
-    position: absolute;
-    top: 38px;
-    left: 24px;
-    width: 44px;
-    height: 44px;
-}
-
-.kpi1 .container img,
-.kpi2 .container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 44px;
-    height: 44px;
-}
-
-.kpi1 .container img + img,
-.kpi2 .container img + img {
-    top: 9px;
-    left: 9px;
-    width: 26px;
-    height: 26px;
-}
-
-#grafico1, #grafico2 {
-    position: relative;
-    overflow: hidden;
-    margin-left: 375px;
-    margin-right: 165px;
-    margin-top: 28px;
-    padding: 0;
-    background-color: #f9f9f9;
-    border: 1px solid #8d4899;
-    border-radius: 20px;
-}
-
 .title_grafico {
     text-align: center;
-    margin-top: 30px;
     color: #5e1f6b;
     margin-left: 210px;
 }
-
-#grafico1 {
-    height: 42vh;
-}
-
-
-#grafico2 {
-    height: 40vh;
-    margin-bottom: 20px;
-}
-
 
 .btn-logout {
     position: absolute;
@@ -336,7 +290,16 @@ body {
 .containerLegenda {
     display: flex;
     justify-content: space-between;
-    background-color: blue;
+    margin: 10px
+}
+
+.botaoVoltar{
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    text-decoration: none; 
+    color: #571f6c;
+    color: #581f6c7c;
 }
 
 .legenda-umidade {
@@ -349,8 +312,8 @@ body {
     font-family: inherit;
     font-size: 11px;
     color: #514456;
-    background-color: #fff8dc;
-    border: 1px solid #e5bd42;
+    background-color: #e7cdfc;
+    border: 1px solid #cf9af7;
     border-radius: 8px;
     padding: 6px 12px;
 }
@@ -389,6 +352,32 @@ body {
     color: #766b7b;
 }
 
-.kpis {
-    
+/* GRAFICOS DA DASH */
+
+.container-grafico {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  width: 100%;   
 }
+
+.container-grafico .title_grafico {
+  width: 100%;
+  text-align: center;
+  margin: 0;             
+  padding: 12px;          
+  box-sizing: border-box;  /* Impede que o padding faça a barra passar de 100% */
+}
+
+.grafico {  
+  position: relative; 
+  width: 100%;       
+  height: 350px;
+  min-width: 0;      
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 2px solid #eae3f0;
+  margin: 20px 0;    
+  padding: 10px;   
+}
+

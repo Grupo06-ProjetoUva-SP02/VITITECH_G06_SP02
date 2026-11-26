@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="dashboard.css">
     <!-- Importa o script do chartJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function alternarMenu() {
+            const menu = document.getElementById('menu-lateral');
+            menu.classList.toggle('aberto');
+        }
+    </script>
+
     <title>Perfil Vititech</title>
 </head>
 
@@ -17,31 +24,29 @@
     <div class="janela">
 
         <div class="header-left">
+                <button id="btn-menu" onclick="alternarMenu()">☰</button>
 
-            <div class="title">
-                <div class="icon">
-                    <img src="../../assets/img/logo.svg" alt="">
-                </div>
-                <h1>Vititech</h1>
+    <!-- Barra lateral -->
+    <nav id="menu-lateral" class="btn-nav">
+        <div class="title">
+            <div class="icon"><img src="../../assets/img/logo.svg" alt=""></div>
+            <h1>Vititech</h1>
+        </div>
 
-            </div>
+        <a href="visao_geral.html" class="ativo">
+            <img src="../../assets/img/visao_geral.svg" alt="">Visão Geral
+        </a>
 
-            <nav class="btn-nav">
-                <a href="visao_geral.html" class="ativo">
-                    <img src="../../assets/img/visao_geral.svg" alt="">Visão Geral
-                </a>
+        <a href="/src/relatorio/relatorio.html">
+            <img src="../../assets/img/relatorio.svg" alt="">Relatórios
+        </a>
 
-
-                <a href="/src/relatorio/relatorio.html">
-                    <img src="../../assets/img/relatorio.svg" alt="">Relatórios
-                </a>
-
-                <div class="btn-logout" onclick="limparSessao()">
-                    <a href="../login/login.html" class="icon">
-                        <img src="../../assets/img/icone_sair.svg" alt=""> Sair
-                    </a>
-                </div>
-
+        <div class="btn-layout">
+            <a href="../login/login.html" onclick="limparSessao()">
+                <img src="../../assets/img/icone_sair.svg" alt="">Sair
+            </a>
+        </div>
+    </nav>
         </div>
 
         <!-- <div class="header right">
@@ -75,13 +80,10 @@
         <div class="header-right">
             
             <div class="containerLegenda">
-            <div class="botaoVoltar">
-            <a style="display: flex;align-items: center; gap: 10px; text-decoration: none; color: black;"
-                href="visao_geral.html">
+            <a class="botaoVoltar">
                 <img src="../../assets/img/backButton.svg" alt="">
-                <p style="font-size: 14px;font-weight: 600;">Voltar</p>
+                <p>Voltar</p>
             </a>
-            </div>
 
             <div class="legenda-umidade" role="group" aria-label="Legenda da umidade">
                 <p><b>Faixas de Umidade:</b></p>
@@ -131,23 +133,26 @@
 
     
 
-    <div class="title_grafico">
-        <h2>Umidade do Solo em Tempo Real</h2>
-    </div>
-
-    <div id="grafico1">
-        <canvas id="umidadePeriodo"></canvas>
-    </div>
-
-
-    <div class="title_grafico">
-        <h2>Incidência de maior e menor umidade do solo</h2>
-    </div>
-
-    <div id="grafico2">
-        <canvas id="mediaPeriodo"></canvas>
-    </div>
+    <div class="container-grafico">
+        <div class="title_grafico">
+            <h2>Umidade do Solo em Tempo Real</h2>
         </div>
+        <div class="grafico">
+            <canvas id="umidadePeriodo"></canvas>
+        </div>
+    </div>
+
+
+    <div class="container-grafico">
+        <div class="title_grafico">
+            <h2>Incidência de maior e menor umidade do solo</h2>
+        </div>
+    
+        <div class="grafico">
+            <canvas id="mediaPeriodo"></canvas>
+        </div>
+    </div>
+    </div>
 
 </div>
 
@@ -257,8 +262,14 @@
   }
 
 
+    // gradiante no gráfico
+    const ctx = umidadePeriodo.getContext('2d');
 
-    const umidadePeriodo = document.getElementById('umidadePeriodo');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+
+    gradient.addColorStop(0, '#581f6c7c');
+    gradient.addColorStop(1, '#FFFFFF00');
+
     const mediaPeriodo = document.getElementById('mediaPeriodo');
 
     // Definição dos limites dos graficos.
@@ -274,8 +285,11 @@
                 label: 'Umidade do solo por período',
                 data: [50, 60, 70, 80, 50, 21],
                 borderWidth: 3,
-                borderColor: '#8d4899',
-                backgroundColor: '#8d4899'
+                borderColor: '#9145a5',
+                backgroundColor: gradient,
+
+                fill: true,
+                tension: 0.3
             }]
         },
 
@@ -338,6 +352,7 @@
             }
         }]
     });
+    
     new Chart(mediaPeriodo, {
         type: 'bar',
         data: {
