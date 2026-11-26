@@ -73,263 +73,332 @@
         </div> -->
 
         <div class="header-right">
-
+            
             <div class="containerLegenda">
-                <div class="botaoVoltar">
-                    <a style="display: flex;align-items: center; gap: 10px; text-decoration: none; color: black;"
-                        href="visao_geral.html">
-                        <img src="../../assets/img/backButton.svg" alt="">
-                        <p style="font-size: 14px;font-weight: 600;">Voltar</p>
-                    </a>
-                </div>
-
-                <div class="legenda-umidade" role="group" aria-label="Legenda da umidade">
-                    <p><b>Faixas de Umidade:</b></p>
-                    <span class="legenda-umidade__item">
-                        <span class="legenda-umidade__cor legenda-umidade__cor--bom" aria-hidden="true"></span>
-                        <strong>Bom</strong>
-                        <span class="legenda-umidade__faixa">— 40% a 70%</span>
-                    </span>
-
-                    <span class="legenda-umidade__item">
-                        <span class="legenda-umidade__cor legenda-umidade__cor--atencao" aria-hidden="true"></span>
-                        <strong>Atenção</strong>
-                        <span class="legenda-umidade__faixa">— 35% ou 75%</span>
-                    </span>
-
-                    <span class="legenda-umidade__item">
-                        <span class="legenda-umidade__cor legenda-umidade__cor--ruim" aria-hidden="true"></span>
-                        <strong>Ruim</strong>
-                        <span class="legenda-umidade__faixa">— menor que 35% ou maior que 75%</span>
-                    </span>
-                </div>
-
+            <div class="botaoVoltar">
+            <a style="display: flex;align-items: center; gap: 10px; text-decoration: none; color: black;"
+                href="visao_geral.html">
+                <img src="../../assets/img/backButton.svg" alt="">
+                <p style="font-size: 14px;font-weight: 600;">Voltar</p>
+            </a>
             </div>
 
+            <div class="legenda-umidade" role="group" aria-label="Legenda da umidade">
+                <p><b>Faixas de Umidade:</b></p>
+                <span class="legenda-umidade__item">
+                    <span class="legenda-umidade__cor legenda-umidade__cor--bom" aria-hidden="true"></span>
+                    <strong>Bom</strong>
+                    <span class="legenda-umidade__faixa">— 40% a 70%</span>
+                </span>
 
-            <div class="kpis">
-                <div class="kpi estadoKpi">
-                    <div class="imgKpi">
-                        <img src="assets/img/atencao.png" alt="Ícone de umidade">
-                    </div>
-                    <h3 style="color: #e6dee8;" class="umidadeKpi">Umidade Atual</h3>
-                    <h1>21%</h1>
-                    <h3 class="text">Abaixo da faixa ideal</h3>
-                </div>
+                <span class="legenda-umidade__item">
+                    <span class="legenda-umidade__cor legenda-umidade__cor--atencao" aria-hidden="true"></span>
+                    <strong>Atenção</strong>
+                    <span class="legenda-umidade__faixa">— 35% ou 75%</span>
+                </span>
 
-                <div class="kpi">
-                    <div class="imgKpi">
-                        <img src="assets/img/alerta_kpi.png" alt="Ícone de alerta">
-                    </div>
-                    <div class="container2">
-                        <p>Alertas de hoje</p>
-                        <h1>8 alertas</h1>
-                        <p style="color: rgb(98, 98, 98);" class="text">+3 que semana passada</p>
-                    </div>
-                </div>
+                <span class="legenda-umidade__item">
+                    <span class="legenda-umidade__cor legenda-umidade__cor--ruim" aria-hidden="true"></span>
+                    <strong>Ruim</strong>
+                    <span class="legenda-umidade__faixa">— menor que 35% ou maior que 75%</span>
+                </span>
             </div>
 
+        </div>
 
 
-            <div class="title_grafico">
-                <h2>Umidade do Solo em Tempo Real</h2>
+        <div class="kpis">
+            <div class="kpi estadoKpi">
+            <div class="imgKpi">
+                <img src="assets/img/atencao.png" alt="Ícone de umidade">
+            </div>
+            <h3 style="color: #e6dee8;" class="umidadeKpi">Umidade Atual</h3>
+            <h1>21%</h1>
+            <h3 class="text">Abaixo da faixa ideal</h3>
             </div>
 
-            <div id="grafico1">
-                <canvas id="umidadePeriodo"></canvas>
+            <div class="kpi">
+            <div class="imgKpi">
+                <img src="assets/img/alerta_kpi.png" alt="Ícone de alerta">
             </div>
-
-
-            <div class="title_grafico">
-                <h2>Incidência de maior e menor umidade do solo</h2>
+            <div class="container2">
+                <p>Alertas de hoje</p>
+                <h1 id="kpi_alerta"></h1>
+                <p style="color: rgb(98, 98, 98);" class="text" id="comparacaoAlerta"></p>
             </div>
-
-            <div id="grafico2">
-                <canvas id="mediaPeriodo"></canvas>
             </div>
         </div>
 
+    
+
+    <div class="title_grafico">
+        <h2>Umidade do Solo em Tempo Real</h2>
     </div>
+
+    <div id="grafico1">
+        <canvas id="umidadePeriodo"></canvas>
+    </div>
+
+
+    <div class="title_grafico">
+        <h2>Incidência de maior e menor umidade do solo</h2>
+    </div>
+
+    <div id="grafico2">
+        <canvas id="mediaPeriodo"></canvas>
+    </div>
+        </div>
+
+</div>
 
 </body>
 
 </html>
 
 <script>
-    window.onload = function () {
-        const idBaia = sessionStorage.ID_BAIA || 1;
-        obterDadosGrafico(idBaia, "tempo_real");
-        obterDadosGrafico(idBaia, "ultimas");
-    }
 
-    let proximaAtualizacao;
+    window.addEventListener('load', fet);
 
-    function obterDadosGrafico(idBaia, tipoGrafico) {
-
-        let rota = "";
-
-        if (tipoGrafico == "ultimas") {
-            rota = `/medidas/ultimas/${idBaia}`;
-        }
-        if (tipoGrafico == "tempo_real") {
-            rota = `/medidas/tempo-real/${idBaia}`;
-        }
-
-        if (proximaAtualizacao != undefined && tipoGrafico == "tempo_real") {
-            clearTimeout(proximaAtualizacao);
-        }
-
-        fetch(rota, { cache: 'no-store' }).then(function (response) {
+    var totalAlertasHoje = document.getElementById(`kpi_alerta`);
+    var totalAlertasOntem = document.getElementById(`comparacaoAlerta`)
+    var comparacaoAlertaOntem = document.getElementById(`comparacaoAlerta`);
+    
+    function kpi_alerta(idEmpresaVincular) {
+        fetch(`/dashboard/KpiAlerta/${idEmpresaVincular}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta[0])}`);
 
-                    plotarGrafico(resposta, idBaia, tipoGrafico);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
+                    totalAlertasHoje.textContent = resposta[0].alertas_hoje;
 
-    function plotarGrafico(resposta, idBaia, tipoGrafico) {
+                    if(resposta[0].alertas_ontem == 0) {
+                        comparacaoAlertaOntem.textContent = `Ontem não teve nenhum alerta`;
+                    } else if(resposta[0].diferenca_alertas > 0) {
 
-        console.log('iniciando plotagem do gráfico...');
-
-        let labels = [];
-
-        let dados = {
-            labels: labels,
-            datasets: []
-        };
-
-        let idCanvas = "";
-        let tipoChart = "line";
-
-        if (tipoGrafico == "tempo_real") {
-            idCanvas = "umidadePeriodo";
-            tipoChart = "line";
-
-            let umidade_real = [];
-
-            for (i = 0; i < resposta.length; i++) {
-                var registro = resposta[i];
-                labels.push(registro.momento_grafico);
-                umidade_real.push(registro.umidade);
-            }
-
-            dados.datasets.push({
-                label: 'Umidade',
-                data: umidade_real,
-                borderColor: '#8d4899',
-                backgroundColor: 'rgba(141, 72, 153, 0.2)',
-                fill: true,
-                tension: 0.3
-            });
-
-        } else if (tipoGrafico == "ultimas") {
-            idCanvas = "mediaPeriodo";
-            tipoChart = "bar";
-
-            let umidade_max = [];
-            let umidade_min = [];
-
-            for (i = 0; i < resposta.length; i++) {
-                var registro = resposta[i];
-                labels.push(registro.dia_semana);
-                umidade_max.push(registro.umidade_maxima);
-                umidade_min.push(registro.umidade_minima);
-            }
-
-            dados.datasets.push(
-                {
-                    label: 'Umidade Máxima',
-                    data: umidade_max,
-                    backgroundColor: '#4caf50'
-                },
-                {
-                    label: 'Umidade Mínima',
-                    data: umidade_min,
-                    backgroundColor: '#e53935'
-                }
-            );
-        }
-
-        var config = {
-            type: tipoChart,
-            data: dados,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: "bottom"
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100
-                    }
-                }
-            }
-        };
-
-        let myChart = new Chart(
-            document.getElementById(idCanvas),
-            config
-        );
-
-        if (tipoGrafico == "tempo_real") {
-            setTimeout(() => atualizarGrafico(idBaia, dados, myChart), 2000);
-        }
-    }
-
-    function atualizarGrafico(idAquario, dados, myChart) {
-
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
-
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
+                        comparacaoAlertaOntem.textContent = ` +${resposta[0].diferenca_alertas} comparado ao dia anterior`;
                     } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-                        myChart.update();
+                        comparacaoAlertaOntem.textContent = `${resposta[0].diferenca_alertas} comparado ao dia anterior`;
                     }
 
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
             }
         })
             .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                console.error(`Erro na obtenção dos dados p/ Kpi: ${error.message}`);
             });
+    } kpi_alerta(sessionStorage.getItem('ID_USUARIO'))
 
+ function commonOptions() {
+        return {
+            indexAxis: "x",
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0
+                    }
+                }
+            }
+        };
     }
+
+    function createChartBar(id, dados, opcoes) {
+        var canvas = document.getElementById(id);
+
+        return new Chart(canvas, {
+            type: "bar",
+            data: dados,
+            options: opcoes
+        });
+    }
+
+
+    var graficoLinhas = null;
+
+    var linhasData = {
+        labels: [],
+        datasets: [
+            {
+                label: "Umidade máxima",
+                data: [],
+                backgroundColor: '#204fc1'
+            },
+            {
+                label: "Umidade mínima",
+                data: [],
+                backgroundColor: '#8B0000'
+            }]
+    };
+
+    graficoLinhas = createChartBar(
+            "mediaPeriodo",
+            linhasData,
+            commonOptions()
+    );
+
+
+  function fet() {
+    fetch(`/dashboard/incidenciaMaiorMenor`)
+      .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+
+      .then(function (dados) {
+        let umidadeMax = [];
+        let umidadeMin = [];
+        let diaSemana = [];
+
+        console.log("oi", dados);
+        console.log("oi", dados.length);
+
+        for (let i = 0; i < dados.length; i++) {
+            umidadeMax.push(dados[i].umidade_maxima);
+            umidadeMin.push(dados[i].umidade_minima);
+            diaSemana.push(dados[i].dia_semana);
+        }
+
+        graficoLinhas.data.labels = diaSemana
+        graficoLinhas.data.datasets[0].data = umidadeMax
+        graficoLinhas.data.datasets[1].data = umidadeMin
+
+        graficoLinhas.update()
+
+
+      })
+
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`,
+        );
+      });
+  }
+
+
+
+    const umidadePeriodo = document.getElementById('umidadePeriodo');
+    const mediaPeriodo = document.getElementById('mediaPeriodo');
+
+    // Definição dos limites dos graficos.
+    const limiteInferior = 40;
+    const limiteSuperior = 70;
+
+    new Chart(umidadePeriodo, {
+        type: 'line',
+
+        data: {
+            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+            datasets: [{
+                label: 'Umidade do solo por período',
+                data: [50, 60, 70, 80, 50, 21],
+                borderWidth: 3,
+                borderColor: '#8d4899',
+                backgroundColor: '#8d4899'
+            }]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            scales: {
+                y: {
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 10,
+                        callback: (valor) => `${valor}%`
+                    }
+                }
+            }
+        },
+
+        plugins: [{
+            id: 'linhas-referencia',
+
+            beforeDatasetsDraw(chart) {
+                const { ctx, chartArea, scales } = chart;
+                if (!chartArea) return;
+
+                const limites = [
+                    { valor: limiteInferior, texto: 'Limite inferior' },
+                    { valor: limiteSuperior, texto: 'Limite superior' }
+                ];
+
+                ctx.save();
+                ctx.strokeStyle = '#ef4444';
+                ctx.fillStyle = '#b91c1c';
+                ctx.lineWidth = 2;
+                ctx.font = '600 12px Arial';
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'bottom';
+
+                limites.forEach(({ valor, texto }) => {
+                    if (valor < scales.y.min || valor > scales.y.max) return;
+
+                    const posicaoY = scales.y.getPixelForValue(valor);
+
+                    // Aqui é onde o chartJS desenha o gráfico.
+                    ctx.beginPath();
+                    ctx.moveTo(chartArea.left, posicaoY);
+                    ctx.lineTo(chartArea.right, posicaoY);
+                    ctx.stroke();
+
+                    // Identifica aonde é o limite.
+                    ctx.fillText(
+                        `${texto}: ${valor}%`,
+                        chartArea.right - 8,
+                        posicaoY - 6
+                    );
+                });
+
+                ctx.restore();
+            }
+        }]
+    });
+    new Chart(mediaPeriodo, {
+        type: 'bar',
+        data: {
+            labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira'],
+
+            // aqui é onde define os dados do gráfico de barras
+            datasets: [{
+                label: 'Umidade mínima',
+                data: [50, 60, 70, 80, 60, 70],
+                borderRadius: 25,
+                backgroundColor: '#0ED425',
+            },
+            {
+                label: 'Umidade máxima',
+                data: [60, 70, 80, 90, 70, 85],
+                borderWidth: 1,
+                backgroundColor: '#FF5850',
+                borderRadius: 25,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+
+        }
+    });
 </script>
