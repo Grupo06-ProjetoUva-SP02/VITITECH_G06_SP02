@@ -256,4 +256,338 @@
 
         }
     });
+</script><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="#">
+    <link rel="icon" type="image/svg+xml" href="../../assets/img/logo.svg">
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- Importa o script do chartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Perfil Vititech</title>
+</head>
+
+<body>
+
+    <div class="janela">
+
+        <div class="header-left">
+
+            <div class="title">
+                <div class="icon">
+                    <img src="../../assets/img/logo.svg" alt="">
+                </div>
+                <h1>Vititech</h1>
+
+            </div>
+
+            <nav class="btn-nav">
+                <a href="visao_geral.html" class="ativo">
+                    <img src="../../assets/img/visao_geral.svg" alt="">Visão Geral
+                </a>
+
+
+                <a href="/src/relatorio/relatorio.html">
+                    <img src="../../assets/img/relatorio.svg" alt="">Relatórios
+                </a>
+
+                <div class="btn-logout" onclick="limparSessao()">
+                    <a href="../login/login.html" class="icon">
+                        <img src="../../assets/img/icone_sair.svg" alt=""> Sair
+                    </a>
+                </div>
+
+        </div>
+
+        <!-- <div class="header right">
+
+            <div class="title">
+                <h2 style="font-weight: 600; font-size: 18px;">Baias</h2>
+            </div>
+
+            <div style="background-color: #c55dd7b1;border: 1px solid #8d4899;" class="card">
+                <div style="background-color: #8d4899;" class="container">
+                    <h3 style="color: #fffdff;">01</h3>
+                </div>
+                <h3 style="font-weight: 600;">Baia 01 <br>Carbenet Suavignon</h3>
+            </div>
+
+            <div class="card">
+                <div class="container">
+                    <h3>02</h3>
+                </div>
+                <h3 style="font-weight: 600;">Baia 02 <br> Malbec</h3>
+            </div>
+
+            <div class="card">
+                <div class="container">
+                    <h3>03</h3>
+                </div>
+                <h3 style="font-weight: 600;">Baia 03 <br> Merlot</h3>
+            </div>
+        </div> -->
+
+        <div class="header-right">
+
+            <div class="containerLegenda">
+                <div class="botaoVoltar">
+                    <a style="display: flex;align-items: center; gap: 10px; text-decoration: none; color: black;"
+                        href="visao_geral.html">
+                        <img src="../../assets/img/backButton.svg" alt="">
+                        <p style="font-size: 14px;font-weight: 600;">Voltar</p>
+                    </a>
+                </div>
+
+                <div class="legenda-umidade" role="group" aria-label="Legenda da umidade">
+                    <p><b>Faixas de Umidade:</b></p>
+                    <span class="legenda-umidade__item">
+                        <span class="legenda-umidade__cor legenda-umidade__cor--bom" aria-hidden="true"></span>
+                        <strong>Bom</strong>
+                        <span class="legenda-umidade__faixa">— 40% a 70%</span>
+                    </span>
+
+                    <span class="legenda-umidade__item">
+                        <span class="legenda-umidade__cor legenda-umidade__cor--atencao" aria-hidden="true"></span>
+                        <strong>Atenção</strong>
+                        <span class="legenda-umidade__faixa">— 35% ou 75%</span>
+                    </span>
+
+                    <span class="legenda-umidade__item">
+                        <span class="legenda-umidade__cor legenda-umidade__cor--ruim" aria-hidden="true"></span>
+                        <strong>Ruim</strong>
+                        <span class="legenda-umidade__faixa">— menor que 35% ou maior que 75%</span>
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="kpis">
+                <div class="kpi estadoKpi">
+                    <div class="imgKpi">
+                        <img src="assets/img/atencao.png" alt="Ícone de umidade">
+                    </div>
+                    <h3 style="color: #e6dee8;" class="umidadeKpi">Umidade Atual</h3>
+                    <h1>21%</h1>
+                    <h3 class="text">Abaixo da faixa ideal</h3>
+                </div>
+
+                <div class="kpi">
+                    <div class="imgKpi">
+                        <img src="assets/img/alerta_kpi.png" alt="Ícone de alerta">
+                    </div>
+                    <div class="container2">
+                        <p>Alertas de hoje</p>
+                        <h1>8 alertas</h1>
+                        <p style="color: rgb(98, 98, 98);" class="text">+3 que semana passada</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="title_grafico">
+                <h2>Umidade do Solo em Tempo Real</h2>
+            </div>
+
+            <div id="grafico1">
+                <canvas id="umidadePeriodo"></canvas>
+            </div>
+
+
+            <div class="title_grafico">
+                <h2>Incidência de maior e menor umidade do solo</h2>
+            </div>
+
+            <div id="grafico2">
+                <canvas id="mediaPeriodo"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    window.onload = function () {
+        const idBaia = sessionStorage.ID_BAIA || 1;
+        obterDadosGrafico(idBaia, "tempo_real");
+        obterDadosGrafico(idBaia, "ultimas");
+    }
+
+    let proximaAtualizacao;
+
+    function obterDadosGrafico(idBaia, tipoGrafico) {
+
+        let rota = "";
+
+        if (tipoGrafico == "ultimas") {
+            rota = `/medidas/ultimas/${idBaia}`;
+        }
+        if (tipoGrafico == "tempo_real") {
+            rota = `/medidas/tempo-real/${idBaia}`;
+        }
+
+        if (proximaAtualizacao != undefined && tipoGrafico == "tempo_real") {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(rota, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    plotarGrafico(resposta, idBaia, tipoGrafico);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico(resposta, idBaia, tipoGrafico) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: []
+        };
+
+        let idCanvas = "";
+        let tipoChart = "line";
+
+        if (tipoGrafico == "tempo_real") {
+            idCanvas = "umidadePeriodo";
+            tipoChart = "line";
+
+            let umidade_real = [];
+
+            for (i = 0; i < resposta.length; i++) {
+                var registro = resposta[i];
+                labels.push(registro.momento_grafico);
+                umidade_real.push(registro.umidade);
+            }
+
+            dados.datasets.push({
+                label: 'Umidade',
+                data: umidade_real,
+                borderColor: '#8d4899',
+                backgroundColor: 'rgba(141, 72, 153, 0.2)',
+                fill: true,
+                tension: 0.3
+            });
+
+        } else if (tipoGrafico == "ultimas") {
+            idCanvas = "mediaPeriodo";
+            tipoChart = "bar";
+
+            let umidade_max = [];
+            let umidade_min = [];
+
+            for (i = 0; i < resposta.length; i++) {
+                var registro = resposta[i];
+                labels.push(registro.dia_semana);
+                umidade_max.push(registro.umidade_maxima);
+                umidade_min.push(registro.umidade_minima);
+            }
+
+            dados.datasets.push(
+                {
+                    label: 'Umidade Máxima',
+                    data: umidade_max,
+                    backgroundColor: '#4caf50'
+                },
+                {
+                    label: 'Umidade Mínima',
+                    data: umidade_min,
+                    backgroundColor: '#e53935'
+                }
+            );
+        }
+
+        var config = {
+            type: tipoChart,
+            data: dados,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: "bottom"
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        };
+
+        let myChart = new Chart(
+            document.getElementById(idCanvas),
+            config
+        );
+
+        if (tipoGrafico == "tempo_real") {
+            setTimeout(() => atualizarGrafico(idBaia, dados, myChart), 2000);
+        }
+    }
+
+    function atualizarGrafico(idAquario, dados, myChart) {
+
+        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].momento_grafico)
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        console.log("---------------------------------------------------------------")
+                    } else {
+                        // tirando e colocando valores no gráfico
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+
+                        myChart.update();
+                    }
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
 </script>
