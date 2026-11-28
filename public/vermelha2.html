@@ -169,11 +169,11 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta[0])}`);
 
-                    totalAlertasHoje.textContent = resposta[0].alertas_hoje;
+                    totalAlertasHoje.textContent = resposta[0].alertas_hoje; // puxa do banco de dados  quantos alertas foram dados hoje
 
                     if(resposta[0].alertas_ontem == 0) {
-                        comparacaoAlertaOntem.textContent = `Ontem não teve nenhum alerta`;
-                    } else if(resposta[0].diferenca_alertas > 0) {
+                        comparacaoAlertaOntem.textContent = `Ontem não teve nenhum alerta`; // se a quantidade de alertas forem zero nao tem alertsa
+                    } else if(resposta[0].diferenca_alertas > 0) { // explicativo 
 
                         comparacaoAlertaOntem.textContent = ` +${resposta[0].diferenca_alertas} comparado ao dia anterior`;
                     } else {
@@ -191,6 +191,55 @@
                 console.error(`Erro na obtenção dos dados p/ Kpi: ${error.message}`);
             });
     } kpi_alerta(sessionStorage.getItem('ID_USUARIO'))
+/* daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+daqui para baixo e inutil 
+
+
+
+
+
+
+
+
+
+
+
+
 
  function commonOptions() {
         return {
@@ -400,5 +449,5 @@
             }
 
         }
-    });
+    });*/
 </script>

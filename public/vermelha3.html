@@ -156,7 +156,7 @@
 </html>
 
 <script>
-    window.onload = function () {
+    window.onload = function () { // coloca as duas plotagens de grafico para a criaçao e o id do canvas
         const idBaia = sessionStorage.ID_BAIA || 1;
         obterDadosGrafico(idBaia, "tempo_real");
         obterDadosGrafico(idBaia, "ultimas");
@@ -168,10 +168,10 @@
 
         let rota = "";
 
-        if (tipoGrafico == "ultimas") {
+        if (tipoGrafico == "ultimas") { // e a rota que ele pega para emcaminhar o grafico
             rota = `/medidas/ultimas/${idBaia}`;
         }
-        if (tipoGrafico == "tempo_real") {
+        if (tipoGrafico == "tempo_real") { // e a rota que ele pega para emcaminhar o grafico
             rota = `/medidas/tempo-real/${idBaia}`;
         }
 
@@ -179,7 +179,7 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(rota, { cache: 'no-store' }).then(function (response) {
+        fetch(rota, { cache: 'no-store' }).then(function (response) { // busca os dados do banco e lista que usaremos mais na frente
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -195,7 +195,7 @@
             });
     }
 
-    function plotarGrafico(resposta, idBaia, tipoGrafico) {
+    function plotarGrafico(resposta, idBaia, tipoGrafico) {  // aqui começa a criar o grafico
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -206,19 +206,20 @@
             datasets: []
         };
 
-        let idCanvas = "";
+        let idCanvas = ""; // id do canvas começa vazio para poder deixar a plotagem de dois graficos ao mesmo tempo e ir alterrando
         let tipoChart = "line";
 
-        if (tipoGrafico == "tempo_real") {
+        if (tipoGrafico == "tempo_real") {  
             idCanvas = "umidadePeriodo";
             tipoChart = "line";
-
+// esse if direciona os dados para um grafico e muda as configuraçoes 
             let umidade_real = [];
 
-            for (i = 0; i < resposta.length; i++) {
+            for (i = 0; i < resposta.length; i++) { // for de plotagem labels e a parte de baixo do grafico
                 var registro = resposta[i];
                 labels.push(registro.momento_grafico);
-                umidade_real.push(registro.umidade);
+                umidade_real.push(registro.umidade); // lista que faz a parte de cima  
+                // dica usa os dados que voce ja tem aqui para criar a kpi que falta 
             }
 
             dados.datasets.push({
@@ -230,16 +231,16 @@
                 tension: 0.3
             });
 
-        } else if (tipoGrafico == "ultimas") {
+        } else if (tipoGrafico == "ultimas") { // muda as outras configuraçoes  e plota o outro grafico 
             idCanvas = "mediaPeriodo";
             tipoChart = "bar";
 
             let umidade_max = [];
             let umidade_min = [];
 
-            for (i = 0; i < resposta.length; i++) {
+            for (i = 0; i < resposta.length; i++) { // da os dados de plotagem 
                 var registro = resposta[i];
-                labels.push(registro.dia_semana);
+                labels.push(registro.dia_semana); // pega do banco e plota com as semanas 
                 umidade_max.push(registro.umidade_maxima);
                 umidade_min.push(registro.umidade_minima);
             }
@@ -289,7 +290,7 @@
         }
     }
 
-    function atualizarGrafico(idAquario, dados, myChart) {
+    function atualizarGrafico(idAquario, dados, myChart) { // nao falamos o nome do monstro
 
         fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
